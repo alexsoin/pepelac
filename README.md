@@ -45,7 +45,7 @@ npm install название_пакета --save-prod
 
 **Выборочная сборка**: 
 - `gulp css:build`      - для сборки CSS файлов
-- `gulp clean:build`    - для очистки каталога "assets/build"
+- `gulp clean:build`    - для очистки каталога `build`
 - `gulp html:build`     - для сборки HTML файлов
 - `gulp js:build`       - для сборки JS файлов
 - `gulp fonts:build`    - для сборки шрифтов
