@@ -33,7 +33,7 @@ var path = {
         js: 'src/js/**/*.js',
         css: 'src/style/**/*.scss',
         img: 'src/img/**/*.*',
-        fonts: 'srs/fonts/**/*.*'
+        fonts: 'src/fonts/**/*.*'
     },
     clean: './build/*'
 };
