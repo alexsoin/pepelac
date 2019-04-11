@@ -45,7 +45,14 @@ var config = {
     server: {
         baseDir: './build'
     },
-    notify: false
+    notify: false,
+    version: {
+        value: '%MDS%',
+        append: {
+            key: 'v',
+            to: ['css', 'js'],
+        },
+    }
 };
 
 /* подключаем gulp и плагины */
@@ -62,6 +69,7 @@ var gulp = require('gulp'),                                 // подключа�
     jpegrecompress = require('imagemin-jpeg-recompress'),   // плагин для сжатия jpeg	
     pngquant = require('imagemin-pngquant'),                // плагин для сжатия png
     rimraf = require('gulp-rimraf'),                        // плагин для удаления файлов и каталогов
+    version = require('gulp-version-number'),               // плагин для добавлении версий css и js файлов
     rename = require('gulp-rename');
 
 /* задачи */
@@ -76,6 +84,7 @@ gulp.task('html:build', function () {
     return gulp.src(path.src.html)                  // выбор всех html файлов по указанному пути
         .pipe(plumber())                            // отслеживание ошибок
         .pipe(rigger())                             // импорт вложений
+        .pipe(version(config.version))              // добавление версий css и js
         .pipe(gulp.dest(path.build.html))           // выкладывание готовых файлов
         .pipe(webserver.reload({ stream: true }));  // перезагрузка сервера
 });

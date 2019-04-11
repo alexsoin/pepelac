@@ -1,7 +1,7 @@
 {
   "name": "gulp-start-project",
-  "version": "1.0.0",
-  "description": "Start project with use Bootstrap 4",
+  "version": "1.0.1",
+  "description": "Gulp start project - Окружение для разработки веб-проектов",
   "author": "alexsoin",
   "license": "MIT",
   "repository": {
@@ -25,6 +25,7 @@
     "gulp-rigger": "^0.5.8",
     "gulp-sass": "^4.0.2",
     "gulp-uglify-es": "^1.0.4",
+    "gulp-version-number": "^0.2.3",
     "imagemin-jpeg-recompress": "^6.0.0",
     "imagemin-pngquant": "^6.0.1",
     "gulp-rename": "^1.4.0"
