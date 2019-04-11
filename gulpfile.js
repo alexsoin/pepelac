@@ -19,14 +19,16 @@ var path = {
         js: 'build/js/',
         css: 'build/css/',
         img: 'build/img/',
-        fonts: 'build/fonts/'
+        fonts: 'build/fonts/',
+        libs: 'build/libs/'
     },
     src: {
         html: 'src/*.html',
         js: 'src/js/main.js',
         style: 'src/style/main.scss',
         img: 'src/img/**/*.*',
-        fonts: 'src/fonts/**/*.*'
+        fonts: 'src/fonts/**/*.*',
+        libs: 'src/libs/**/*.*'
     },
     watch: {
         html: 'src/**/*.html',
@@ -127,6 +129,12 @@ gulp.task('image:build', function () {
         .pipe(gulp.dest(path.build.img));               // выгрузка готовых файлов
 });
 
+// перенос библиотек
+gulp.task('libs:build', function () {
+    return gulp.src(path.src.libs)
+        .pipe(gulp.dest(path.build.libs));
+});
+
 // удаление каталога build 
 gulp.task('clean:build', function () {
     return gulp.src(path.clean, { read: false })
@@ -146,7 +154,8 @@ gulp.task('build',
             'css:build',
             'js:build',
             'fonts:build',
-            'image:build'
+            'image:build',
+            'libs:build'
         )
     )
 );
@@ -158,6 +167,7 @@ gulp.task('watch', function () {
     gulp.watch(path.watch.js, gulp.series('js:build'));
     gulp.watch(path.watch.img, gulp.series('image:build'));
     gulp.watch(path.watch.fonts, gulp.series('fonts:build'));
+    gulp.watch(path.watch.fonts, gulp.series('libs:build'));
 });
 
 // задача по умолчанию
