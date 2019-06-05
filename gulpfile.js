@@ -35,7 +35,9 @@ var path = {
         js: 'src/js/**/*.js',
         css: 'src/style/**/*.scss',
         img: 'src/img/**/*.*',
-        fonts: 'src/fonts/**/*.*'
+        fonts: 'src/fonts/**/*.*',
+        css_build: 'build/css/*.css',
+        js_build: 'build/js/*.js'
     },
     clean: './build/*'
 };
@@ -95,7 +97,7 @@ gulp.task('css:build', function () {
         .pipe(plumber())                // для отслеживания ошибок
         .pipe(sass())                   // scss -> css
         .pipe(autoprefixer({            // добавим префиксы
-            browsers: autoprefixerList
+            overrideBrowserslist: autoprefixerList
         }))
         .pipe(gulp.dest(path.build.css))
         .pipe(rename({ suffix: '.min' }))
@@ -177,6 +179,8 @@ gulp.task('watch', function () {
     gulp.watch(path.watch.img, gulp.series('image:build'));
     gulp.watch(path.watch.fonts, gulp.series('fonts:build'));
     gulp.watch(path.watch.fonts, gulp.series('libs:build'));
+    gulp.watch(path.watch.css_build).on('change', webserver.reload);
+    gulp.watch(path.watch.js_build).on('change', webserver.reload);
 });
 
 // задача по умолчанию
