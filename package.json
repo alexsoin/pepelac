@@ -1,33 +1,46 @@
 {
-  "name": "gulp-start-project",
-  "version": "1.0.1",
-  "description": "Gulp start project - Окружение для разработки веб-проектов",
+  "name": "gulp-webpack-starter-kit",
+  "version": "1.0.0",
+  "description": "Gulp + Webpack starter kit - Окружение для разработки веб-проектов",
   "author": "alexsoin",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/alexsoin/gulp-start-projet.git"
+    "url": "git://github.com/alexsoin/gw-starter-kit.git"
   },
-  "dependencies": {
-    "jquery": "^3.3.1",
-    "popper.js": "^1.14.6",
-    "bootstrap": "^4.2.1"
+  "scripts": {
+    "watch": "gulp --developer",
+    "build": "gulp build --production"
   },
   "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "bootstrap": "^4.2.1",
     "browser-sync": "^2.26.3",
     "gulp": "^4.0.0",
-    "gulp-autoprefixer": "^6.0.0",
+    "gulp-autoprefixer": "^7.0.1",
     "gulp-cache": "^1.0.2",
     "gulp-clean-css": "^4.0.0",
-    "gulp-rimraf": "^0.2.2",
-    "gulp-imagemin": "^5.0.3",
+    "gulp-html-beautify": "^1.0.1",
+    "gulp-if": "^3.0.0",
+    "gulp-imagemin": "^6.2.0",
     "gulp-plumber": "^1.2.1",
+    "gulp-rename": "^1.4.0",
     "gulp-rigger": "^0.5.8",
+    "gulp-rimraf": "^1.0.0",
     "gulp-sass": "^4.0.2",
-    "gulp-uglify-es": "^1.0.4",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-strip-comments": "^2.5.2",
+    "gulp-strip-css-comments": "^2.0.0",
+    "gulp-twig": "^1.2.0",
+    "gulp-uglify-es": "^2.0.0",
     "gulp-version-number": "^0.2.3",
     "imagemin-jpeg-recompress": "^6.0.0",
-    "imagemin-pngquant": "^6.0.1",
-    "gulp-rename": "^1.4.0"
+    "imagemin-pngquant": "^8.0.0",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.6",
+    "webpack": "^4.41.2",
+    "webpack-stream": "^5.2.1"
   }
 }

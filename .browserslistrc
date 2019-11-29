@@ -1,0 +1,8 @@
+chrome >= 45
+ff >= 45
+edge >= 12
+explorer >= 10
+ios >= 9
+safari >= 9
+android >= 4.4
+opera >= 30
