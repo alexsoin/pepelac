@@ -10,7 +10,7 @@
   },
   "scripts": {
     "watch": "gulp --developer",
-    "build": "gulp build --production"
+    "build": "gulp build"
   },
   "devDependencies": {
     "@babel/core": "^7.7.4",
@@ -27,7 +27,6 @@
     "gulp-imagemin": "^6.2.0",
     "gulp-plumber": "^1.2.1",
     "gulp-rename": "^1.4.0",
-    "gulp-rigger": "^0.5.8",
     "gulp-rimraf": "^1.0.0",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
@@ -35,7 +34,6 @@
     "gulp-strip-css-comments": "^2.0.0",
     "gulp-twig": "^1.2.0",
     "gulp-uglify-es": "^2.0.0",
-    "gulp-version-number": "^0.2.3",
     "imagemin-jpeg-recompress": "^6.0.0",
     "imagemin-pngquant": "^8.0.0",
     "jquery": "^3.3.1",
