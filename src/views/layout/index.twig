@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
+{% block head %}
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     
     <title>{{ title }}</title>
 
-    <link rel="stylesheet" href="assets/css/main.css">
+    {% block styles %}
+        <link rel="stylesheet" href="assets/css/main.css">
+    {% endblock %}
+{% endblock %}
 </head>
 <body>
-<section>
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                {% include '../partials/header.twig' %}
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    {% block header %}
+                        {% include '../partials/header.twig' %}
+                    {% endblock %}
+                </div>
             </div>
         </div>
-    </div>
-    {% block content %}{% endblock %}
-</section>
-<script src="assets/js/main.js"></script>
+        {% block content %}{% endblock %}
+    </section>
+    {% block scripts %}
+        <script src="assets/js/main.js"></script>
+    {% endblock %}
 </body>
 </html>

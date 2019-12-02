@@ -8,11 +8,4 @@ import 'popper.js';
 import 'bootstrap/js/dist/util';
 
 // Импортируем другие js-файлы
-import './my';
-
-function test_qweq(name) {
-    // return `hi ${name}, =)`;
-    return 'hi '+name+', =)';
-}
-
-test_qweq('123')
+import './_my';

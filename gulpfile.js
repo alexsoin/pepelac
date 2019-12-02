@@ -1,20 +1,20 @@
 'use strict';
 
+const path = require('path');
+
 /* подключаем gulp и плагины */
-const gulp = require('gulp');                                   // подключаем Gulp
-const browserSync = require('browser-sync').create();           // сервер для работы и автоматического обновления страниц
-const plumber = require('gulp-plumber');                        // модуль отслеживания ошибок
-const rigger = require('gulp-rigger');                          // модуль импорта содержимого одного файла в другой
-const sass = require('gulp-sass');                              // модуль компиляции SASS (SCSS) в CSS
-const autoprefixer = require('gulp-autoprefixer');              // модуль автоматической установки автопрефиксов
-const cleanCSS = require('gulp-clean-css');                     // плагин минимизации CSS
-const uglify = require('gulp-uglify-es').default;               // модуль минимизации JavaScript
-const cache = require('gulp-cache');                            // модуль кэширования
-const imagemin = require('gulp-imagemin');                      // плагин сжатия PNG, JPEG, GIF и SVG изображений
-const jpegrecompress = require('imagemin-jpeg-recompress');     // плагин сжатия jpeg	
-const pngquant = require('imagemin-pngquant');                  // плагин сжатия png
-const rimraf = require('gulp-rimraf');                          // плагин удаления файлов и каталогов
-const rename = require('gulp-rename');                          // плагин переименовывания файлов
+const gulp = require('gulp');
+const browserSync = require('browser-sync').create();
+const plumber = require('gulp-plumber');
+const sass = require('gulp-sass');
+const autoprefixer = require('gulp-autoprefixer');
+const cleanCSS = require('gulp-clean-css');
+const cache = require('gulp-cache');
+const imagemin = require('gulp-imagemin');
+const jpegrecompress = require('imagemin-jpeg-recompress');
+const pngquant = require('imagemin-pngquant');
+const rimraf = require('gulp-rimraf');
+const rename = require('gulp-rename');
 const stripCssComments = require('gulp-strip-css-comments');
 const twig = require('gulp-twig');
 const htmlbeautify = require('gulp-html-beautify');
@@ -25,39 +25,41 @@ const strip = require('gulp-strip-comments');
 
 const argv = require('yargs').argv;
 const developer = !!argv.developer;
-const production = !!argv.production;
+const production = !developer;
 
 const isMode = developer ? 'dev' : 'prod';
 const dataMode = require(`./src/data/${isMode}.json`);
 const dataSite = require(`./src/data/site.json`);
 
 /* пути */
+const dirDist = 'dist';
+const dirAssets = 'assets';
+const dirSrc = 'src';
+
 const paths = {
-	root: './dist',
+	root: path.join('.', dirDist),
+	clean: path.join('.', dirDist, '*'),
 	dist: {
-		html: 'dist/',
-		js: 'dist/assets/js/',
-		css: 'dist/assets/css/',
-		img: 'dist/assets/img/',
-		fonts: 'dist/assets/fonts/'
+		html: path.join(dirDist),
+		js: path.join(dirDist, dirAssets, 'js'),
+		css: path.join(dirDist, dirAssets, 'css'),
+		img: path.join(dirDist, dirAssets, 'img'),
+		fonts: path.join(dirDist, dirAssets, 'fonts')
 	},
 	src: {
-		html: 'src/*.html',
-		twig: 'src/views/*.twig',
-		script: 'src/assets/js/main.js',
-		style: 'src/assets/style/main.scss',
-		img: 'src/assets/img/**/*.*',
-		fonts: 'src/assets/fonts/**/*.*'
+		twig: path.join(dirSrc, 'views', '*.twig'),
+		script: path.join(dirSrc, dirAssets, 'js', 'main.js'),
+		style: path.join(dirSrc, dirAssets, 'style', 'main.scss'),
+		img: path.join(dirSrc, dirAssets, 'img', '**/*.*'),
+		fonts: path.join(dirSrc, dirAssets, 'fonts', '**/*.*')
 	},
 	watch: {
-		html: 'src/**/*.html',
-		twig: 'src/views/**/*.twig',
-		js: 'src/assets/js/**/*.js',
-		scss: 'src/assets/style/**/*.scss',
-		img: 'src/assets/img/**/*.*',
-		fonts: 'src/assets/fonts/**/*.*'
-	},
-	clean: './dist/*'
+		twig: path.join(dirSrc, 'views', '**/*.twig'),
+		js: path.join(dirSrc, dirAssets, 'js', '**/*.js'),
+		scss: path.join(dirSrc, dirAssets, 'style', '**/*.scss'),
+		img: path.join(dirSrc, dirAssets, 'img', '**/*.*'),
+		fonts: path.join(dirSrc, dirAssets, 'fonts', '**/*.*')
+	}
 };
 
 /* задачи */
@@ -67,12 +69,14 @@ function watch() {
 	gulp.watch(paths.watch.scss, styles);
 	gulp.watch(paths.watch.twig, templates);
 	gulp.watch(paths.watch.js, scripts);
+	gulp.watch(paths.watch.fonts, fonts);
+	gulp.watch(paths.watch.img, images);
 }
 
 // следим за dist и релоадим браузер
 function server() {
-	browserSync.init({ server: paths.root });
-	browserSync.watch(paths.root + '/**/*.*', browserSync.reload);
+	browserSync.init({ server: dirDist });
+	browserSync.watch(path.join(dirDist, '**/*.*'), browserSync.reload);
 }
 
 // очистка
@@ -96,20 +100,20 @@ function templates() {
 
 // scss
 function styles() {
-	return gulp.src(paths.src.style)									// получим main.scss
+	return gulp.src(paths.src.style)
 		.pipe(gulpif(developer, sourcemaps.init()))
 		.pipe(sourcemaps.init())
-		.pipe(plumber())                								// для отслеживания ошибок
+		.pipe(plumber())
 		.pipe(sass({ includePaths: ['node_modules'] })
-			.on('error', sass.logError))                  // scss -> css
+			.on('error', sass.logError))
 		.pipe(plumber.stop())
 		.pipe(stripCssComments())
-		.pipe(autoprefixer()) 													// добавим префиксы
+		.pipe(autoprefixer())
 		.pipe(gulpif(developer, sourcemaps.write()))
-		.pipe(gulp.dest(paths.dist.css)) 								// выгружаем не минимизарованную версию
+		.pipe(gulp.dest(paths.dist.css))
 		.pipe(rename({ suffix: '.min' }))
-		.pipe(cleanCSS())                           		// минимизируем CSS
-		.pipe(gulp.dest(paths.dist.css));            		// выгружаем в dist
+		.pipe(cleanCSS())
+		.pipe(gulp.dest(paths.dist.css));
 }
 
 // js
@@ -117,10 +121,7 @@ function scripts() {
 	return gulp.src(paths.src.script)
 		.pipe(webpack( require('./webpack.config.js') ))
 		.pipe(gulpif(production, strip()))
-		.pipe(gulp.dest(paths.dist.js))
-		.pipe(rename({ suffix: '.min' }))
-		.pipe(uglify())                 	// минимизируем js
-		.pipe(gulp.dest(paths.dist.js));	// выгружаем в dist
+		.pipe(gulp.dest(paths.dist.js));
 }
 
 // fonts
@@ -131,8 +132,8 @@ function fonts() {
 
 // обработка картинок
 function images() {
-	return gulp.src(paths.src.img)                       			// путь с исходниками картинок
-		.pipe(cache(imagemin([                          				// сжатие изображений
+	return gulp.src(paths.src.img)
+		.pipe(cache(imagemin([
 			imagemin.gifsicle({ interlaced: true }),
 			jpegrecompress({
 				progressive: true,
@@ -142,9 +143,10 @@ function images() {
 			pngquant(),
 			imagemin.svgo({ plugins: [{ removeViewBox: false }] })
 		])))
-		.pipe(gulp.dest(paths.dist.img));               				// выгрузка готовых файлов
+		.pipe(gulp.dest(paths.dist.img));
 };
 
+// инициализируем задачи
 exports.templates = templates;
 exports.styles = styles;
 exports.scripts = scripts;
