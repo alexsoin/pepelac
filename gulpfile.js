@@ -9,7 +9,6 @@ const plumber = require('gulp-plumber');
 const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const cleanCSS = require('gulp-clean-css');
-const uglify = require('gulp-uglify-es').default;
 const cache = require('gulp-cache');
 const imagemin = require('gulp-imagemin');
 const jpegrecompress = require('imagemin-jpeg-recompress');
@@ -122,9 +121,6 @@ function scripts() {
 	return gulp.src(paths.src.script)
 		.pipe(webpack( require('./webpack.config.js') ))
 		.pipe(gulpif(production, strip()))
-		.pipe(gulp.dest(paths.dist.js))
-		.pipe(rename({ suffix: '.min' }))
-		.pipe(uglify())
 		.pipe(gulp.dest(paths.dist.js));
 }
 

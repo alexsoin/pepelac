@@ -8,4 +8,4 @@ import 'popper.js';
 import 'bootstrap/js/dist/util';
 
 // Импортируем другие js-файлы
-import './my';
+import './_my';
