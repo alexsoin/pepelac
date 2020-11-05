@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% block head %}
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    
+    <title>{{ title }}</title>
+
+    {% block styles %}
+        <link rel="stylesheet" href="assets/css/main.css?t={{ "now"|date('U') }}">
+    {% endblock %}
+{% endblock %}
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    {% block header %}
+                        {% include '../partials/header.twig' %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+        {% block content %}{% endblock %}
+    </section>
+    {% block scripts %}
+        <script src="assets/js/main.js?t={{ "now"|date('U') }}"></script>
+    {% endblock %}
+</body>
+</html>
