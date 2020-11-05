@@ -26,21 +26,21 @@
     "gulp-clean-css": "^4.0.0",
     "gulp-html-beautify": "^1.0.1",
     "gulp-if": "^3.0.0",
-    "gulp-imagemin": "^6.2.0",
+    "gulp-imagemin": "^7.1.0",
     "gulp-plumber": "^1.2.1",
-    "gulp-rename": "^1.4.0",
+    "gulp-rename": "^2.0.0",
     "gulp-rimraf": "^1.0.0",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-strip-comments": "^2.5.2",
     "gulp-strip-css-comments": "^2.0.0",
     "gulp-twig": "^1.2.0",
-    "imagemin-jpeg-recompress": "^6.0.0",
-    "imagemin-pngquant": "^8.0.0",
+    "imagemin-jpeg-recompress": "^7.0.0",
+    "imagemin-pngquant": "^9.0.1",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.6",
     "uglifyjs-webpack-plugin": "^2.2.0",
-    "webpack": "^4.41.2",
-    "webpack-stream": "^5.2.1"
+    "webpack": "^5.4.0",
+    "webpack-stream": "^6.1.0"
   }
 }
