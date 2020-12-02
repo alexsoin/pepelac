@@ -1,6 +1,6 @@
 {
   "name": "gulp-webpack-starter-kit",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Gulp + Webpack starter kit - Окружение для разработки веб-проектов",
   "author": "alexsoin",
   "license": "MIT",
@@ -35,6 +35,7 @@
     "gulp-strip-comments": "^2.5.2",
     "gulp-strip-css-comments": "^2.0.0",
     "gulp-twig": "^1.2.0",
+    "gulp-version-number": "^0.2.4",
     "imagemin-jpeg-recompress": "^7.0.0",
     "imagemin-pngquant": "^9.0.1",
     "jquery": "^3.5.1",

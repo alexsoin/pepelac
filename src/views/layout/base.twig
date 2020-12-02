@@ -9,8 +9,13 @@
     <title>{{ title }}</title>
 
     {% block styles %}
-        <link rel="stylesheet" href="assets/css/main.css?t={{ "now"|date('U') }}">
+        <link rel="stylesheet" href="assets/css/main.css">
     {% endblock %}
+    {% block styles_page %}{% endblock %}
+    {% block scripts_head %}
+        <script src="/assets/js/vendor.min.js"></script>
+    {% endblock %}
+    {% block scripts_page_head %}{% endblock %}
 {% endblock %}
 </head>
 <body>
@@ -26,8 +31,9 @@
         </div>
         {% block content %}{% endblock %}
     </section>
+    {% block scripts_page %}{% endblock %}
     {% block scripts %}
-        <script src="assets/js/main.js?t={{ "now"|date('U') }}"></script>
+        <script src="/assets/js/main.min.js"></script>
     {% endblock %}
 </body>
 </html>
