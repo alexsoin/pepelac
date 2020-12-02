@@ -22,6 +22,7 @@ const sourcemaps = require('gulp-sourcemaps');
 const gulpif = require('gulp-if');
 const webpack = require('webpack-stream');
 const strip = require('gulp-strip-comments');
+const version = require('gulp-version-number');
 
 const argv = require('yargs').argv;
 const developer = !!argv.developer;
@@ -30,6 +31,14 @@ const production = !developer;
 const isMode = developer ? 'dev' : 'prod';
 const dataMode = require(`./src/data/${isMode}.json`);
 const dataSite = require(`./src/data/site.json`);
+const webpackConfig = require('./webpack.config.js');
+const versionConfig = {
+	'value': '%DT%',
+	'append': {
+		'key': 'v',
+		'to': ['css', 'js'],
+	},
+};
 
 /* пути */
 const dirDist = 'dist';
@@ -95,6 +104,7 @@ function templates() {
 			}
 	}))
 		.pipe(gulpif(production, htmlbeautify()))
+		.pipe(gulpif(production, version(versionConfig)))
 		.pipe(gulp.dest(paths.dist.html));
 }
 
@@ -118,8 +128,7 @@ function styles() {
 
 // js
 function scripts() {
-	return gulp.src(paths.src.script)
-		.pipe(webpack( require('./webpack.config.js') ))
+	return webpack(webpackConfig)
 		.pipe(gulpif(production, strip()))
 		.pipe(gulp.dest(paths.dist.js));
 }
