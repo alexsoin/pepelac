@@ -1,0 +1,15 @@
+{
+	"path": "./dist/assets",
+	"prod": {
+		"root": "dist/assets",
+		"hostname": "xxx@xxx",
+		"destination": "~/xxx",
+		"exclude": ["**/Thumbs.db", "**/*.DS_Store"]
+	},
+	"dev": {
+		"root": "dist/assets",
+		"hostname": "xxx@xxx",
+		"destination": "~/xxx",
+		"exclude": ["**/Thumbs.db", "**/*.DS_Store"]
+	}
+}

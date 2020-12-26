@@ -1,5 +1,6 @@
 'use strict';
 
+const fs = require('fs');
 const path = require('path');
 
 /* подключаем gulp и плагины */
@@ -24,6 +25,8 @@ const webpack = require('webpack-stream');
 const strip = require('gulp-strip-comments');
 const version = require('gulp-version-number');
 const notifier = require('node-notifier');
+const rsync = require('gulp-rsync');
+const confirm = require('gulp-confirm');
 
 const argv = require('yargs').argv;
 const developer = !!argv.developer;
@@ -162,12 +165,44 @@ function images() {
 		.pipe(gulp.dest(paths.dist.img));
 }
 
+// функция для деплоя на сервер
+function deployRsync(done) {
+	if(!fs.existsSync('./deploy.json')) {
+		console.log("Не существует файл deploy.json");
+		return done();
+	}
+	const deployJson = require('./deploy.json');
+	const configDeploy = deployJson[isMode];
+
+	if(configDeploy.hostname === "xxx@xxx") {
+		console.log("Не настроен файл deploy.json")
+		return done();
+	}
+
+	return gulp.src(deployJson.path)
+		.pipe(confirm({
+			question: 'Вы уверены, что хотите загрузить файлы на '+isMode+'? (y)',
+			input: '_key:y'
+		}))
+		.pipe(rsync({
+			root: configDeploy.root,
+			hostname: configDeploy.hostname,
+			destination: configDeploy.destination,
+			exclude: configDeploy.exclude,
+			recursive: true,
+			archive: true,
+			silent: false,
+			compress: true
+		}));
+}
+
 // инициализируем задачи
 exports.templates = templates;
 exports.styles = styles;
 exports.scripts = scripts;
 exports.fonts = fonts;
 exports.images = images;
+exports.deployRsync = deployRsync;
 exports.clean = clean;
 
 gulp.task('default', gulp.series(
@@ -179,4 +214,10 @@ gulp.task('default', gulp.series(
 gulp.task('build', gulp.series(
 	clean,
 	gulp.parallel(fonts, images, styles, scripts, templates)
+));
+
+gulp.task('deploy', gulp.series(
+	clean,
+	gulp.parallel(fonts, images, styles, scripts, templates),
+	deployRsync
 ));
