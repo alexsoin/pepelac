@@ -38,6 +38,7 @@
     "gulp-version-number": "^0.2.4",
     "imagemin-jpeg-recompress": "^7.0.0",
     "imagemin-pngquant": "^9.0.1",
+    "node-notifier": "^9.0.0",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^5.4.0",
     "webpack-stream": "^6.1.0"

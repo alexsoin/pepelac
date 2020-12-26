@@ -23,6 +23,7 @@ const gulpif = require('gulp-if');
 const webpack = require('webpack-stream');
 const strip = require('gulp-strip-comments');
 const version = require('gulp-version-number');
+const notifier = require('node-notifier');
 
 const argv = require('yargs').argv;
 const developer = !!argv.developer;
@@ -115,7 +116,13 @@ function styles() {
 		.pipe(sourcemaps.init())
 		.pipe(plumber())
 		.pipe(sass({ includePaths: ['node_modules'] })
-			.on('error', sass.logError))
+			// .on('error', sass.logError) // оповещение только в терминал
+			.on('error', function(err) {
+				console.error(err.message);
+				notifier.notify({ title: 'Ошибка в SCSS файле!', message: err.message });
+				this.emit('end');
+			})
+		)
 		.pipe(plumber.stop())
 		.pipe(stripCssComments())
 		.pipe(autoprefixer())
@@ -137,7 +144,7 @@ function scripts() {
 function fonts() {
 	return gulp.src(paths.src.fonts)
 		.pipe(gulp.dest(paths.dist.fonts));
-};
+}
 
 // обработка картинок
 function images() {
@@ -153,7 +160,7 @@ function images() {
 			imagemin.svgo({ plugins: [{ removeViewBox: false }] })
 		])))
 		.pipe(gulp.dest(paths.dist.img));
-};
+}
 
 // инициализируем задачи
 exports.templates = templates;
