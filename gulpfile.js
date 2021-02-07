@@ -62,14 +62,14 @@ const paths = {
 	src: {
 		twig: path.join(dirSrc, 'views', '*.twig'),
 		script: path.join(dirSrc, dirAssets, 'js', 'main.js'),
-		style: path.join(dirSrc, dirAssets, 'style', 'main.scss'),
+		style: path.join(dirSrc, dirAssets, 'styles', 'main.scss'),
 		img: path.join(dirSrc, dirAssets, 'img', '**/*.*'),
 		fonts: path.join(dirSrc, dirAssets, 'fonts', '**/*.*')
 	},
 	watch: {
 		twig: path.join(dirSrc, 'views', '**/*.twig'),
 		js: path.join(dirSrc, dirAssets, 'js', '**/*.js'),
-		scss: path.join(dirSrc, dirAssets, 'style', '**/*.scss'),
+		scss: path.join(dirSrc, dirAssets, 'styles', '**/*.scss'),
 		img: path.join(dirSrc, dirAssets, 'img', '**/*.*'),
 		fonts: path.join(dirSrc, dirAssets, 'fonts', '**/*.*')
 	}
