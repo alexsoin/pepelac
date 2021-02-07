@@ -172,28 +172,31 @@ function deployRsync(done) {
 		return done();
 	}
 	const deployJson = require('./deploy.json');
-	const configDeploy = deployJson[isMode];
 
-	if(configDeploy.hostname === "xxx@xxx") {
+	if(deployJson.hostname === "xxx@xxx") {
 		console.log("Не настроен файл deploy.json")
 		return done();
 	}
 
 	return gulp.src(deployJson.path)
 		.pipe(confirm({
-			question: 'Вы уверены, что хотите загрузить файлы на '+isMode+'? (y)',
-			input: '_key:y'
+			question: `Вы уверены, что хотите загрузить файлы в ${deployJson.hostname}:${deployJson.destination}? (y/Y)`,
+			input: '_key:y,Y'
 		}))
 		.pipe(rsync({
-			root: configDeploy.root,
-			hostname: configDeploy.hostname,
-			destination: configDeploy.destination,
-			exclude: configDeploy.exclude,
+			root: deployJson.root,
+			hostname: deployJson.hostname,
+			destination: deployJson.destination,
+			exclude: deployJson.exclude,
 			recursive: true,
 			archive: true,
 			silent: false,
 			compress: true
-		}));
+		}))
+		.on('end', function(){ console.log(`Загружено в ${deployJson.hostname}:${deployJson.destination}`); });
+		// .pipe(
+		// 	console.log(`Загружено в ${deployJson.hostname}:${deployJson.destination}`)
+		// );
 }
 
 // инициализируем задачи
