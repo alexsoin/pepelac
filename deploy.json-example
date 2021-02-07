@@ -1,0 +1,7 @@
+{
+	"path": "./dist/assets",
+	"root": "dist/assets",
+	"hostname": "xxx@xxx",
+	"destination": "~/xxx",
+	"exclude": ["**/Thumbs.db", "**/*.DS_Store"]
+}

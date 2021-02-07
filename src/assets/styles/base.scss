@@ -1,0 +1,18 @@
+body {
+	background-color: $bg;
+	text-align: center;
+	margin: 0;
+	color: $body-text-color;
+	min-height: 100vh;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.demo {
+		display: block;
+		max-width: 600px;
+		margin: 40px auto;
+		text-align: center;
+	}
+}

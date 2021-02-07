@@ -1,0 +1,14 @@
+#!/bin/bash
+
+echo "Введите название проекта: "
+read name
+
+echo "Введите описание проекта: "
+read description
+
+sed -i "" -e 's/"name": "gulp-webpack-starter-kit"/"name": "'"$name"'"/' package.json
+sed -i "" -e 's/"description": "Gulp + Webpack starter kit - Окружение для разработки веб-проектов"/"description": "'"$description"'"/' package.json
+
+rm -fr .git
+git init
+rm -fr init

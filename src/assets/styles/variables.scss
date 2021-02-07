@@ -1,0 +1,25 @@
+$font-default: 'Roboto';
+$font-family-sans-serif: $font-default, Arial, sans-serif;
+
+$spacer: 1rem; 					// 16px
+$spacers: (
+	0: 0,
+	1: ($spacer * .25), 	// 4px
+	2: ($spacer * .5), 		// 8px
+	3: $spacer, 					// 16px
+	4: ($spacer * 1.5), 	// 24px
+	5: ($spacer * 3), 		// 48px
+	6: ($spacer * 4), 		// 64px
+	7: ($spacer * 5), 		// 80px
+	8: ($spacer * 6.25), 	// 100px
+	9: ($spacer * 7.5), 	// 120px
+	10: ($spacer * 9.375) // 150px
+);
+
+$grid-breakpoints: (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px);
+$container-max-widths: 		(sm: 540px, md: 720px, lg: 960px, xl: 1140px, xxl: 1320px);
+
+/** demo **/
+$bg: #5ea55e;
+$body-text-color: #fff;
+/** end demo **/

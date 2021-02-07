@@ -1,5 +1,6 @@
 'use strict';
 
+const fs = require('fs');
 const path = require('path');
 
 /* подключаем gulp и плагины */
@@ -23,6 +24,9 @@ const gulpif = require('gulp-if');
 const webpack = require('webpack-stream');
 const strip = require('gulp-strip-comments');
 const version = require('gulp-version-number');
+const notifier = require('node-notifier');
+const rsync = require('gulp-rsync');
+const confirm = require('gulp-confirm');
 
 const argv = require('yargs').argv;
 const developer = !!argv.developer;
@@ -58,14 +62,14 @@ const paths = {
 	src: {
 		twig: path.join(dirSrc, 'views', '*.twig'),
 		script: path.join(dirSrc, dirAssets, 'js', 'main.js'),
-		style: path.join(dirSrc, dirAssets, 'style', 'main.scss'),
+		style: path.join(dirSrc, dirAssets, 'styles', 'main.scss'),
 		img: path.join(dirSrc, dirAssets, 'img', '**/*.*'),
 		fonts: path.join(dirSrc, dirAssets, 'fonts', '**/*.*')
 	},
 	watch: {
 		twig: path.join(dirSrc, 'views', '**/*.twig'),
 		js: path.join(dirSrc, dirAssets, 'js', '**/*.js'),
-		scss: path.join(dirSrc, dirAssets, 'style', '**/*.scss'),
+		scss: path.join(dirSrc, dirAssets, 'styles', '**/*.scss'),
 		img: path.join(dirSrc, dirAssets, 'img', '**/*.*'),
 		fonts: path.join(dirSrc, dirAssets, 'fonts', '**/*.*')
 	}
@@ -115,7 +119,13 @@ function styles() {
 		.pipe(sourcemaps.init())
 		.pipe(plumber())
 		.pipe(sass({ includePaths: ['node_modules'] })
-			.on('error', sass.logError))
+			// .on('error', sass.logError) // оповещение только в терминал
+			.on('error', function(err) {
+				console.error(err.message);
+				notifier.notify({ title: 'Ошибка в SCSS файле!', message: err.message });
+				this.emit('end');
+			})
+		)
 		.pipe(plumber.stop())
 		.pipe(stripCssComments())
 		.pipe(autoprefixer())
@@ -137,7 +147,7 @@ function scripts() {
 function fonts() {
 	return gulp.src(paths.src.fonts)
 		.pipe(gulp.dest(paths.dist.fonts));
-};
+}
 
 // обработка картинок
 function images() {
@@ -153,7 +163,41 @@ function images() {
 			imagemin.svgo({ plugins: [{ removeViewBox: false }] })
 		])))
 		.pipe(gulp.dest(paths.dist.img));
-};
+}
+
+// функция для деплоя на сервер
+function deployRsync(done) {
+	if(!fs.existsSync('./deploy.json')) {
+		console.log("Не существует файл deploy.json");
+		return done();
+	}
+	const deployJson = require('./deploy.json');
+
+	if(deployJson.hostname === "xxx@xxx") {
+		console.log("Не настроен файл deploy.json")
+		return done();
+	}
+
+	return gulp.src(deployJson.path)
+		.pipe(confirm({
+			question: `Вы уверены, что хотите загрузить файлы в ${deployJson.hostname}:${deployJson.destination}? (y/Y)`,
+			input: '_key:y,Y'
+		}))
+		.pipe(rsync({
+			root: deployJson.root,
+			hostname: deployJson.hostname,
+			destination: deployJson.destination,
+			exclude: deployJson.exclude,
+			recursive: true,
+			archive: true,
+			silent: false,
+			compress: true
+		}))
+		.on('end', function(){ console.log(`Загружено в ${deployJson.hostname}:${deployJson.destination}`); });
+		// .pipe(
+		// 	console.log(`Загружено в ${deployJson.hostname}:${deployJson.destination}`)
+		// );
+}
 
 // инициализируем задачи
 exports.templates = templates;
@@ -161,6 +205,7 @@ exports.styles = styles;
 exports.scripts = scripts;
 exports.fonts = fonts;
 exports.images = images;
+exports.deployRsync = deployRsync;
 exports.clean = clean;
 
 gulp.task('default', gulp.series(
@@ -172,4 +217,10 @@ gulp.task('default', gulp.series(
 gulp.task('build', gulp.series(
 	clean,
 	gulp.parallel(fonts, images, styles, scripts, templates)
+));
+
+gulp.task('deploy', gulp.series(
+	clean,
+	gulp.parallel(fonts, images, styles, scripts, templates),
+	deployRsync
 ));
