@@ -48,11 +48,13 @@ const versionConfig = {
 const dirDist = 'dist';
 const dirAssets = 'assets';
 const dirSrc = 'src';
+const dirStatic = 'static';
 
 const paths = {
 	root: path.join('.', dirDist),
 	clean: path.join('.', dirDist, '*'),
 	dist: {
+		static: path.join(dirDist),
 		html: path.join(dirDist),
 		js: path.join(dirDist, dirAssets, 'js'),
 		css: path.join(dirDist, dirAssets, 'css'),
@@ -60,6 +62,7 @@ const paths = {
 		fonts: path.join(dirDist, dirAssets, 'fonts')
 	},
 	src: {
+		static: path.join(dirStatic, '**/*.*'),
 		twig: path.join(dirSrc, 'views', '*.twig'),
 		script: path.join(dirSrc, dirAssets, 'js', 'main.js'),
 		style: path.join(dirSrc, dirAssets, 'styles', 'main.scss'),
@@ -67,6 +70,7 @@ const paths = {
 		fonts: path.join(dirSrc, dirAssets, 'fonts', '**/*.*')
 	},
 	watch: {
+		static: path.join(dirStatic, '**/*.*'),
 		twig: path.join(dirSrc, 'views', '**/*.twig'),
 		js: path.join(dirSrc, dirAssets, 'js', '**/*.js'),
 		scss: path.join(dirSrc, dirAssets, 'styles', '**/*.scss'),
@@ -79,6 +83,7 @@ const paths = {
 
 // слежка
 function watch() {
+	gulp.watch(paths.watch.static, moveStatic);
 	gulp.watch(paths.watch.scss, styles);
 	gulp.watch(paths.watch.twig, templates);
 	gulp.watch(paths.watch.js, scripts);
@@ -147,7 +152,13 @@ function scripts() {
 function fonts() {
 	return gulp.src(paths.src.fonts)
 		.pipe(gulp.dest(paths.dist.fonts));
-}
+};
+
+// static
+function moveStatic() {
+	return gulp.src(paths.src.static)
+		.pipe(gulp.dest(paths.dist.static));
+};
 
 // обработка картинок
 function images() {
@@ -163,7 +174,7 @@ function images() {
 			imagemin.svgo({ plugins: [{ removeViewBox: false }] })
 		])))
 		.pipe(gulp.dest(paths.dist.img));
-}
+};
 
 // функция для деплоя на сервер
 function deployRsync(done) {
@@ -200,6 +211,7 @@ function deployRsync(done) {
 }
 
 // инициализируем задачи
+exports.moveStatic = moveStatic;
 exports.templates = templates;
 exports.styles = styles;
 exports.scripts = scripts;
@@ -210,17 +222,11 @@ exports.clean = clean;
 
 gulp.task('default', gulp.series(
 	clean,
-	gulp.parallel(fonts, images, styles, scripts, templates),
+	gulp.parallel(moveStatic, fonts, images, styles, scripts, templates),
 	gulp.parallel(watch, server)
 ));
 
 gulp.task('build', gulp.series(
 	clean,
-	gulp.parallel(fonts, images, styles, scripts, templates)
-));
-
-gulp.task('deploy', gulp.series(
-	clean,
-	gulp.parallel(fonts, images, styles, scripts, templates),
-	deployRsync
+	gulp.parallel(moveStatic, fonts, images, styles, scripts, templates)
 ));
