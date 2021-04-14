@@ -45,37 +45,38 @@ const versionConfig = {
 };
 
 /* пути */
+const dirRoot = __dirname;
 const dirDist = 'dist';
 const dirAssets = 'assets';
 const dirSrc = 'src';
 const dirStatic = 'static';
 
 const paths = {
-	root: path.join('.', dirDist),
-	clean: path.join('.', dirDist, '*'),
+	root: path.join(dirRoot, dirDist),
+	clean: path.join(dirRoot, dirDist, '*'),
 	dist: {
-		static: path.join(dirDist),
-		html: path.join(dirDist),
-		js: path.join(dirDist, dirAssets, 'js'),
-		css: path.join(dirDist, dirAssets, 'css'),
-		img: path.join(dirDist, dirAssets, 'img'),
-		fonts: path.join(dirDist, dirAssets, 'fonts')
+		static: path.join(dirRoot, dirDist),
+		html: path.join(dirRoot, dirDist),
+		js: path.join(dirRoot, dirDist, dirAssets, 'js'),
+		css: path.join(dirRoot, dirDist, dirAssets, 'css'),
+		img: path.join(dirRoot, dirDist, dirAssets, 'img'),
+		fonts: path.join(dirRoot, dirDist, dirAssets, 'fonts')
 	},
 	src: {
-		static: path.join(dirStatic, '**/*.*'),
-		twig: path.join(dirSrc, 'views', '*.twig'),
-		script: path.join(dirSrc, dirAssets, 'js', 'main.js'),
-		style: path.join(dirSrc, dirAssets, 'styles', 'main.scss'),
-		img: path.join(dirSrc, dirAssets, 'img', '**/*.*'),
-		fonts: path.join(dirSrc, dirAssets, 'fonts', '**/*.*')
+		static: path.join(dirRoot, dirStatic, '**/*.*'),
+		twig: path.join(dirRoot, dirSrc, 'views', '*.twig'),
+		script: path.join(dirRoot, dirSrc, dirAssets, 'js', 'main.js'),
+		style: path.join(dirRoot, dirSrc, dirAssets, 'styles', 'main.scss'),
+		img: path.join(dirRoot, dirSrc, dirAssets, 'img', '**/*.*'),
+		fonts: path.join(dirRoot, dirSrc, dirAssets, 'fonts', '**/*.*')
 	},
 	watch: {
-		static: path.join(dirStatic, '**/*.*'),
-		twig: path.join(dirSrc, 'views', '**/*.twig'),
-		js: path.join(dirSrc, dirAssets, 'js', '**/*.js'),
-		scss: path.join(dirSrc, dirAssets, 'styles', '**/*.scss'),
-		img: path.join(dirSrc, dirAssets, 'img', '**/*.*'),
-		fonts: path.join(dirSrc, dirAssets, 'fonts', '**/*.*')
+		static: `./${dirStatic}/'**/*.*`,
+		twig: `./${dirSrc}/views/**/*.twig`,
+		js: `./${dirSrc}/${dirAssets}/js/**/*.js`,
+		scss: `./${dirSrc}/${dirAssets}/styles/**/*.scss`,
+		img: `./${dirSrc}/${dirAssets}/img/**/*.*`,
+		fonts: `./${dirSrc}/${dirAssets}/fonts/**/*.*`
 	}
 };
 
@@ -93,8 +94,13 @@ function watch() {
 
 // следим за dist и релоадим браузер
 function server() {
-	browserSync.init({ server: dirDist });
-	browserSync.watch(path.join(dirDist, '**/*.*'), browserSync.reload);
+	browserSync.init({
+		server: {
+			baseDir: dirDist,
+			index: "index.html"
+		}
+	});
+	browserSync.watch(path.join('.', dirDist, '**/*.*'), browserSync.reload);
 }
 
 // очистка
