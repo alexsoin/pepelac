@@ -1,18 +1,11 @@
 // const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const fs = require('fs');
 const prodMode = !require('yargs').argv.developer;
-const getListJsFiles = (dir) => fs.readdirSync(dir).filter(elem => elem.endsWith('.js')).map(elem => dir + elem);
-const paths = {
-	vendor: "./src/assets/js/vendor/",	// директория js файлов зависимостей
-	main: "./src/assets/js/",						// директория js файлов сайта
-};
 
 const config = {
 	mode: prodMode ? "production" : "development",
 	entry: {
-		"vendor.min": getListJsFiles(paths.vendor),
-		"main.min": getListJsFiles(paths.main),
+		"main.min": "./src/assets/js/index.js",
 	},
 	performance: {
 		hints: false,
@@ -34,9 +27,20 @@ const config = {
 		]
 	},
 	optimization: {
+		splitChunks: {
+			chunks: 'all',
+			maxInitialRequests: Infinity,
+			minSize: 0,
+			cacheGroups: {
+				vendor: {
+					test: /[\\/]node_modules[\\/]/,
+					name: "vendor.min"
+				},
+			},
+		},
 		minimizer: [
 			new UglifyJsPlugin({
-				test: /\.min\.js$/,
+				test: /\.js$/,
 				parallel: true,
 				uglifyOptions: {
 					output: {
