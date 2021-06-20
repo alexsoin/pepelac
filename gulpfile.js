@@ -65,8 +65,8 @@ const paths = {
 	src: {
 		static: path.join(dirRoot, dirStatic, '**/*.*'),
 		twig: path.join(dirRoot, dirSrc, 'views', '*.twig'),
-		script: path.join(dirRoot, dirSrc, dirAssets, 'js', 'main.js'),
-		style: path.join(dirRoot, dirSrc, dirAssets, 'styles', 'main.scss'),
+		script: path.join(dirRoot, dirSrc, dirAssets, 'js', 'index.js'),
+		style: path.join(dirRoot, dirSrc, dirAssets, 'scss', 'index.scss'),
 		img: path.join(dirRoot, dirSrc, dirAssets, 'img', '**/*.*'),
 		fonts: path.join(dirRoot, dirSrc, dirAssets, 'fonts', '**/*.*')
 	},
@@ -74,7 +74,7 @@ const paths = {
 		static: `./${dirStatic}/'**/*.*`,
 		twig: `./${dirSrc}/views/**/*.twig`,
 		js: `./${dirSrc}/${dirAssets}/js/**/*.js`,
-		scss: `./${dirSrc}/${dirAssets}/styles/**/*.scss`,
+		scss: `./${dirSrc}/${dirAssets}/scss/**/*.scss`,
 		img: `./${dirSrc}/${dirAssets}/img/**/*.*`,
 		fonts: `./${dirSrc}/${dirAssets}/fonts/**/*.*`
 	}
@@ -141,6 +141,7 @@ function styles() {
 		.pipe(stripCssComments())
 		.pipe(autoprefixer())
 		.pipe(gulpif(developer, sourcemaps.write()))
+		.pipe(rename({ basename: 'main' }))
 		.pipe(gulp.dest(paths.dist.css))
 		.pipe(rename({ suffix: '.min' }))
 		.pipe(cleanCSS())
