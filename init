@@ -6,9 +6,11 @@ read name
 echo "Введите описание проекта: "
 read description
 
+echo -e "\n"
+
 # package.json
-sed -i "" -e 's/"name": "gulp-webpack-starter-kit"/"name": "'"$name"'"/' package.json
-sed -i "" -e 's/"description": "Gulp + Webpack starter kit - Окружение для разработки веб-проектов"/"description": "'"$description"'"/' package.json
+sed -i -e 's/"name": "gulp-webpack-starter-kit"/"name": "'"$name"'"/' package.json
+sed -i -e 's/"description": "Gulp + Webpack starter kit - Окружение для разработки веб-проектов"/"description": "'"$description"'"/' package.json
 
 # README.md
 echo -e "# $name\n$description\n" > README.md
