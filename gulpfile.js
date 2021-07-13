@@ -159,13 +159,13 @@ function scripts() {
 function fonts() {
 	return gulp.src(paths.src.fonts)
 		.pipe(gulp.dest(paths.dist.fonts));
-};
+}
 
 // static
 function moveStatic() {
 	return gulp.src(paths.src.static)
 		.pipe(gulp.dest(paths.dist.static));
-};
+}
 
 // обработка картинок
 function images() {
@@ -181,7 +181,7 @@ function images() {
 			imagemin.svgo({ plugins: [{ removeViewBox: false }] })
 		])))
 		.pipe(gulp.dest(paths.dist.img));
-};
+}
 
 // функция для деплоя на сервер
 function deployRsync(done) {
@@ -212,9 +212,6 @@ function deployRsync(done) {
 			compress: true
 		}))
 		.on('end', function(){ console.log(`Загружено в ${deployJson.hostname}:${deployJson.destination}`); });
-		// .pipe(
-		// 	console.log(`Загружено в ${deployJson.hostname}:${deployJson.destination}`)
-		// );
 }
 
 // инициализируем задачи
