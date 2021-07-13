@@ -6,9 +6,32 @@ read name
 echo "Введите описание проекта: "
 read description
 
+# package.json
 sed -i "" -e 's/"name": "gulp-webpack-starter-kit"/"name": "'"$name"'"/' package.json
 sed -i "" -e 's/"description": "Gulp + Webpack starter kit - Окружение для разработки веб-проектов"/"description": "'"$description"'"/' package.json
 
+# README.md
+echo -e "# $name\n$description\n" > README.md
+echo -e "## Как запустить\n" >> README.md
+echo -e "**Установить зависимости**" >> README.md
+echo -e "- \`npm install\`" >> README.md
+echo -e "\n**Режим живого сервера**" >> README.md
+echo -e "- \`npm run watch\`       - сборка и запуск live-server в режиме developer" >> README.md
+echo -e "- \`npm run prodwatch\`   - сборка и запуск live-server в режиме production" >> README.md
+echo -e "\n**Режим сборки**" >> README.md
+echo -e "- \`npm run build\`       - сборка проекта в режиме production" >> README.md
+echo -e "- \`npm run devbuild\`    - сборка проекта в режиме developer" >> README.md
+echo -e "\nДокументация: https://github.com/alexsoin/gw-starter-kit" >> README.md
+
+# rm & git init
+rm ./src/assets/img/gwst.png
+rm ./src/assets/img/rick.png
 rm -fr .git
 git init
 rm -fr init
+
+# complete
+echo -e "\033[32m\n\n======================================"
+echo -e "  Проект успешно проинициализирован!  "
+echo -e "======================================\n"
+echo -e "\033[31m!!! Не забудьте при необходимости отредактировать содержимое файлов \033[47mindex.js\033[0m\033[31m, \033[47mindex.scss\033[0m\033[31m, \033[47mvariables.scss\033[0m\033[31m и \033[47mindex.twig\033[0m\n\n"
