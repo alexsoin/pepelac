@@ -43,9 +43,9 @@
     "imagemin-jpeg-recompress": "^7.0.0",
     "imagemin-pngquant": "^9.0.1",
     "node-notifier": "^9.0.0",
-    "uglifyjs-webpack-plugin": "^2.2.0",
-    "webpack": "^5.4.0",
-    "webpack-stream": "^6.1.0"
+    "terser-webpack-plugin": "^5.1.4",
+    "webpack": "^5.50.0",
+    "webpack-stream": "^6.1.2"
   },
   "dependencies": {
     "bootstrap": "^4.5.3",
