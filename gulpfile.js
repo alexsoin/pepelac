@@ -124,11 +124,9 @@ function templates() {
 // scss
 function styles() {
 	return gulp.src(paths.src.style)
-		.pipe(gulpif(developer, sourcemaps.init()))
-		.pipe(sourcemaps.init())
+		.pipe(gulpif(developer, sourcemaps.init({loadMaps: true, largeFile: true})))
 		.pipe(plumber())
-		.pipe(sass({ includePaths: ['node_modules'] })
-			// .on('error', sass.logError) // оповещение только в терминал
+		.pipe(sass({ outputStyle: 'compressed', includePaths: ['node_modules'] })
 			.on('error', function(err) {
 				console.error(err.message);
 				notifier.notify({ title: 'Ошибка в SCSS файле!', message: err.message });
@@ -136,13 +134,9 @@ function styles() {
 			})
 		)
 		.pipe(plumber.stop())
-		.pipe(stripCssComments())
 		.pipe(autoprefixer())
 		.pipe(gulpif(developer, sourcemaps.write()))
-		.pipe(rename({ basename: 'main' }))
-		.pipe(gulp.dest(paths.dist.css))
-		.pipe(rename({ suffix: '.min' }))
-		.pipe(cleanCSS())
+		.pipe(rename({ basename: 'main.min' }))
 		.pipe(gulp.dest(paths.dist.css));
 }
 
