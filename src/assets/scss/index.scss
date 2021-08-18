@@ -1,9 +1,4 @@
 @import "fonts";
-// Переопределение дефолтных значений переменных Bootstrap 5 и определение своих
-@import "variables";
-
-// Подключение нужных SCSS исходников Bootstrap 5
+@import "variables"; // Переопределение дефолтных значений переменных Bootstrap 5 и определение своих
 @import "bootstrap";
-
-// Подключение своих SCSS файлов
 @import "base";
