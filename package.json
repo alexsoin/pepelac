@@ -48,8 +48,7 @@
     "webpack-stream": "^6.1.0"
   },
   "dependencies": {
-    "bootstrap": "^4.5.3",
-    "jquery": "^3.5.1",
-    "popper.js": "^1.16.1"
+    "@popperjs/core": "^2.9.3",
+    "bootstrap": "^5.1.0"
   }
 }
