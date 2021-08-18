@@ -11,9 +11,7 @@ const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const cleanCSS = require('gulp-clean-css');
 const cache = require('gulp-cache');
-const imagemin = require('gulp-imagemin');
-const jpegrecompress = require('imagemin-jpeg-recompress');
-const pngquant = require('imagemin-pngquant');
+const image = require('gulp-image');
 const rimraf = require('gulp-rimraf');
 const rename = require('gulp-rename');
 const stripCssComments = require('gulp-strip-css-comments');
@@ -170,16 +168,7 @@ function moveStatic() {
 // обработка картинок
 function images() {
 	return gulp.src(paths.src.img)
-		.pipe(cache(imagemin([
-			imagemin.gifsicle({ interlaced: true }),
-			jpegrecompress({
-				progressive: true,
-				max: 90,
-				min: 80
-			}),
-			pngquant(),
-			imagemin.svgo({ plugins: [{ removeViewBox: false }] })
-		])))
+		.pipe(cache(image()))
 		.pipe(gulp.dest(paths.dist.img));
 }
 
