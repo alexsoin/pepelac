@@ -27,6 +27,7 @@ echo -e "\nДокументация: https://github.com/alexsoin/gw-starter-kit"
 
 # rm & git init
 rm ./src/assets/img/gwst.png
+rm ./static/favicon.ico
 rm -fr .git
 git init
 rm -fr init
