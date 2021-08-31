@@ -1,4 +1,5 @@
 # Gulp + Webpack starter kit - Окружение для разработки веб-проектов
+
 Современный стартовый инструментарий для веб-разработки с использованием Gulp Task Runner и Webpack bundler.
 
 Все задачи выполняются через Gulp. Webpack используется только для сборки Javascript.
@@ -6,12 +7,14 @@
 ![](src/assets/img/gwst.png)
 
 ## Требования к окружению
--	node.js
--	git
+
+- node.js
+- git
 
 ## Установка
 
 ### 1. Клонирование и инициализация
+
 Скачайте файлы с github или клонируйте его c помощью команды:
 
 ```bash
@@ -25,19 +28,23 @@ git clone https://github.com/alexsoin/gw-starter-kit.git
 ```
 
 ### 2. Установки зависимостей проекта
+
 Для установки зависимостей проекта необходимо в командной строке ввести команды:
+
 ```bash
 npm install
 ```
 
 Если требуются дополнительные пакеты, то для их установки нужно выполнить команду:
 
-- Установка пакета, при этом информация о нём, автоматически прописывается в секцию "devDependencies" файла "package.json" *(такие пакеты как gulp-autoprefixer)*
+- Установка пакета, при этом информация о нём, автоматически прописывается в секцию "devDependencies" файла "package.json" _(такие пакеты как gulp-autoprefixer)_
+
 ```bash
 npm install --save-dev название_пакета
 ```
 
-- Установка пакета, при этом информация о нём, автоматически прописывается в секцию "dependencies" файла "package.json" *(такие пакеты как bootstrap)*
+- Установка пакета, при этом информация о нём, автоматически прописывается в секцию "dependencies" файла "package.json" _(такие пакеты как bootstrap)_
+
 ```bash
 npm install --save-prod название_пакета
 ```
@@ -49,21 +56,25 @@ npm install --save-prod название_пакета
 3. Редактируем файл `package.json`, меняем в нем параметры `name`, `description`, `author` и `repository.url` на свои значения.
 
 ## Как использовать окружение
+
 **Режим живого сервера**
-- `npm run watch`       - сборка и запуск live-server в режиме developer
-- `npm run prodwatch`   - сборка и запуск live-server в режиме production
+
+- `npm run watch` - сборка и запуск live-server в режиме developer
+- `npm run prodwatch` - сборка и запуск live-server в режиме production
 
 **Режим сборки**
-- `npm run build`       - сборка проекта в режиме production
-- `npm run devbuild`    - сборка проекта в режиме developer
+
+- `npm run build` - сборка проекта в режиме production
+- `npm run devbuild` - сборка проекта в режиме developer
 
 **Выборочная сборка**:
-- `gulp templates`   - сборка html файлов
-- `gulp styles`      - сборка css стилей
-- `gulp scripts`     - сборка js скриптов
-- `gulp fonts`       - сборка шрифтов
-- `gulp images`      - сборка картинок
-- `gulp clean`       - очистка папки конечной сборки
+
+- `gulp templates` - сборка html файлов
+- `gulp styles` - сборка css стилей
+- `gulp scripts` - сборка js скриптов
+- `gulp fonts` - сборка шрифтов
+- `gulp images` - сборка картинок
+- `gulp clean` - очистка папки конечной сборки
 
 ## Список инструментов
 
@@ -78,6 +89,7 @@ npm install --save-prod название_пакета
 ## Файловая структура Gulp проекта
 
 ### Корневая директория
+
 В корне проекта расположены папки:
 
 ```bash
