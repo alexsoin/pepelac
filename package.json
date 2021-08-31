@@ -8,6 +8,17 @@
     "type": "git",
     "url": "git://github.com/alexsoin/gw-starter-kit.git"
   },
+	"browserslist": [
+    "last 2 version",
+    "not dead"
+  ],
+	"babel": {
+	  "presets": [
+	    [
+	      "@babel/preset-env"
+	    ]
+	  ]
+	},
   "scripts": {
     "watch": "gulp --developer",
     "prodwatch": "gulp",
