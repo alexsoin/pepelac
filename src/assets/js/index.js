@@ -1,5 +1,3 @@
-
-
 import 'bootstrap'; // Импортируем Bootstrap
 
 const aaa = 'Rick';
