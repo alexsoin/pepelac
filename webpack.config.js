@@ -1,5 +1,5 @@
 // const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
 const prodMode = !require('yargs').argv.developer;
 
 const config = {
@@ -38,16 +38,18 @@ const config = {
 				},
 			},
 		},
+		minimize: prodMode,
 		minimizer: [
-			new UglifyJsPlugin({
-				test: /\.js$/,
+			new TerserPlugin({
+        test: /\.js(\?.*)?$/i,
 				parallel: true,
-				uglifyOptions: {
-					output: {
-						comments: false
-					}
-				}
-			}),
+        terserOptions: {
+          mangle: true,
+          output: {
+            comments: false,
+          },
+        },
+      })
 		],
 	},
 	plugins: []
