@@ -20,7 +20,6 @@ const htmlbeautify = require('gulp-html-beautify');
 const sourcemaps = require('gulp-sourcemaps');
 const gulpif = require('gulp-if');
 const webpack = require('webpack-stream');
-const strip = require('gulp-strip-comments');
 const version = require('gulp-version-number');
 const notifier = require('node-notifier');
 const rsync = require('gulp-rsync');
@@ -143,7 +142,6 @@ function styles() {
 // js
 function scripts() {
 	return webpack(webpackConfig)
-		.pipe(gulpif(production, strip()))
 		.pipe(gulp.dest(paths.dist.js));
 }
 
