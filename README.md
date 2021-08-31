@@ -94,34 +94,34 @@ npm install --save-prod название_пакета
 
 ```bash
 ├── deploy.json-example
-├── gulpfile.js										# Конфигурация и задачи Gulpfile
-├── init													# Инициализатор проекта
-├── dist/													# Папка выгрузки проекта
-├── src/													# Исходники
-│   ├── assets/										# Хранятся стили, скрипты и тд
-│   │   ├── fonts/								# Шрифтов
-│   │   ├── img/									# Изображения
-│   │   ├── js/										# js-файлов
-│   │   │   └── index.js					# Точка входа js файлов
-│   │   └── scss/									# scss стили
-│   │       ├── base.scss					# Пользовательские стили
-│   │       ├── _bootstrap.scss		# Подключение bootstrap стилей
-│   │       ├── fonts.scss				# Подключение шрифтов
-│   │       ├── index.scss				# Точка входа scss файлов
-│   │       └── variables.scss		# Переменные стилей
-│   ├── data/											# json файлы для вывода данных при разработке
-│   │   ├── dev.json							# Вывод данных при develop разработке
-│   │   ├── prod.json							# Вывод данных при production разработке
-│   │   └── site.json							# Общий файл для вывода данных
-│   └── views/										# Для фрагментов twig файлов
-│       ├── index.twig						# index.twig будет преобразован в index.html страницу
-│       ├── layout/								# Шаблоны страницы
-│       │   └── base.twig					# Базовый шаблон
-│       └── partials/							# Части часто используемого кода на страницах
-│           └── header.twig				# header
-├── static/												# Статичные файлы, которые будут просто перенесены в dist
-│   └── favicon.ico								# favicon
-└── webpack.config.js							# Настройки webpack
+├── gulpfile.js                 # Конфигурация и задачи Gulpfile
+├── init                        # Инициализатор проекта
+├── dist/                       # Папка выгрузки проекта
+├── src/                        # Исходники
+│   ├── assets/                 # Хранятся стили, скрипты и тд
+│   │   ├── fonts/              # Шрифтов
+│   │   ├── img/                # Изображения
+│   │   ├── js/                 # js-файлов
+│   │   │   └── index.js        # Точка входа js файлов
+│   │   └── scss/               # scss стили
+│   │       ├── base.scss       # Пользовательские стили
+│   │       ├── _bootstrap.scss # Подключение bootstrap стилей
+│   │       ├── fonts.scss      # Подключение шрифтов
+│   │       ├── index.scss      # Точка входа scss файлов
+│   │       └── variables.scss  # Переменные стилей
+│   ├── data/                   # json файлы для вывода данных при разработке
+│   │   ├── dev.json            # Вывод данных при develop разработке
+│   │   ├── prod.json           # Вывод данных при production разработке
+│   │   └── site.json           # Общий файл для вывода данных
+│   └── views/									# Для фрагментов twig файлов
+│       ├── index.twig					# index.twig будет преобразован в index.html страницу
+│       ├── layout/							# Шаблоны страницы
+│       │   └── base.twig				# Базовый шаблон
+│       └── partials/						# Части часто используемого кода на страницах
+│           └── header.twig			# header
+├── static/											# Статичные файлы, которые будут просто перенесены в dist
+│   └── favicon.ico							# favicon
+└── webpack.config.js						# Настройки webpack
 ```
 
 ### Директория js
