@@ -45,6 +45,7 @@ const config = {
 				parallel: true,
         terserOptions: {
           mangle: true,
+					sourceMap: !prodMode,
           output: {
             comments: false,
           },

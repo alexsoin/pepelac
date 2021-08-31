@@ -21,7 +21,6 @@
     "@babel/preset-env": "^7.12.1",
     "babel-loader": "^8.1.0",
     "browser-sync": "^2.26.13",
-    "expose-loader": "^1.0.3",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
     "gulp-cache": "^1.1.3",
