@@ -43,7 +43,7 @@
     "node-notifier": "^9.0.0",
     "terser-webpack-plugin": "^5.1.4",
     "webpack": "^5.50.0",
-    "webpack-stream": "^6.1.2"
+    "webpack-stream": "^7.0.0"
   },
   "dependencies": {
     "@popperjs/core": "^2.9.3",
