@@ -24,6 +24,7 @@
     "prodwatch": "gulp",
     "devbuild": "gulp build --developer",
     "build": "gulp build",
+    "deploy": "gulp deploy",
     "deploy:dev": "gulp deploy --deploy dev",
     "deploy:prod": "gulp deploy --deploy prod"
   },

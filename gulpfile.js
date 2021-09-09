@@ -258,7 +258,7 @@ function deployRsync(done) {
 		return done();
 	}
 	const deployJson = require('./deploy.json');
-	const deployType = argv.deploy || deployJson.default;
+	const deployType = typeof argv.deploy === 'string' ? argv.deploy : deployJson.default;
 	const deployData = deployJson[deployType];
 
 	if(!deployData) {
