@@ -216,35 +216,82 @@ function images() {
 		.pipe(gulp.dest(paths.dist.img));
 }
 
+// создание файла для деплоя
+function createDeploy(done) {
+	const fileNameDeploy = "deploy.json";
+	const successMessage = "Файл deploy.json успешно создан";
+
+	/**
+	 * root - путь к папке для выгрузки, относительно корня текущего проекта
+	 * hostname - 'логин@адрес' удаленного сервера
+	 * destination - путь к папке удаленного сервера, куда выгружать данные
+	 * exclude - исключения выгрузки
+	 */
+	const tmpSetting = {
+		root: "dist/assets",
+		hostname: "xxx@xxx",
+		destination: "~/xxx",
+		exclude: ["**/Thumbs.db", "**/*.DS_Store"],
+		recursive: true,
+		archive: true,
+		silent: false,
+		compress: true,
+	};
+	const tmpDeploy = {
+		default: 'dev',
+		dev: tmpSetting,
+		prod: tmpSetting
+	};
+
+	fs.writeFileSync(fileNameDeploy, JSON.stringify(tmpDeploy, null, 2));
+	console.log(successMessage);
+	notifier.notify({ title: 'Создание '+fileNameDeploy, message: successMessage });
+	done();
+}
+
 // функция для деплоя на сервер
 function deployRsync(done) {
 	if(!fs.existsSync('./deploy.json')) {
 		console.log("Не существует файл deploy.json");
+		notifier.notify({ title: "deploy", message: "Не существует файл deploy.json" });
+		createDeploy(done);
 		return done();
 	}
 	const deployJson = require('./deploy.json');
+	const deployType = argv.deploy || deployJson.default;
+	const deployData = deployJson[deployType];
 
-	if(deployJson.hostname === "xxx@xxx") {
-		console.log("Не настроен файл deploy.json")
+	if(!deployData) {
+		console.log("Не найдены данные для выгрузки");
+		notifier.notify({ title: "deploy", message: "Не найдены данные для выгрузки" });
 		return done();
 	}
 
-	return gulp.src(deployJson.path)
+	if(deployData.hostname === "xxx@xxx") {
+		console.log("Не настроен файл deploy.json");
+		notifier.notify({ title: "deploy", message: "Не настроен файл deploy.json" });
+		return done();
+	}
+
+	return gulp.src(deployData.root)
 		.pipe(confirm({
-			question: `Вы уверены, что хотите загрузить файлы в ${deployJson.hostname}:${deployJson.destination}? (y/Y)`,
+			question: `Вы уверены, что хотите загрузить файлы в ${deployData.hostname}:${deployData.destination}? (y/Y)`,
 			input: '_key:y,Y'
 		}))
 		.pipe(rsync({
-			root: deployJson.root,
-			hostname: deployJson.hostname,
-			destination: deployJson.destination,
-			exclude: deployJson.exclude,
+			root: deployData.root,
+			hostname: deployData.hostname,
+			destination: deployData.destination,
+			exclude: deployData.exclude,
 			recursive: true,
 			archive: true,
 			silent: false,
 			compress: true
 		}))
-		.on('end', function(){ console.log(`Загружено в ${deployJson.hostname}:${deployJson.destination}`); });
+		.on('end', function(){
+			console.log(`Загружено в ${deployData.hostname}:${deployData.destination}`);
+			notifier.notify({ title: "deploy", message: `Загружено в ${deployData.hostname}:${deployData.destination}` });
+		});
 }
 
 // инициализируем задачи
@@ -254,7 +301,8 @@ exports.styles = styles;
 exports.scripts = scripts;
 exports.fonts = fonts;
 exports.images = images;
-exports.deployRsync = deployRsync;
+exports.createDeploy = createDeploy;
+exports.deploy = deployRsync;
 exports.clean = clean;
 
 gulp.task('default', gulp.series(

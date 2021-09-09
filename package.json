@@ -24,8 +24,8 @@
     "prodwatch": "gulp",
     "devbuild": "gulp build --developer",
     "build": "gulp build",
-    "deploy:dev": "gulp deploy --developer",
-    "deploy:prod": "gulp deploy"
+    "deploy:dev": "gulp deploy --deploy dev",
+    "deploy:prod": "gulp deploy --deploy prod"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
