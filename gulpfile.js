@@ -9,12 +9,10 @@ const browserSync = require('browser-sync').create();
 const plumber = require('gulp-plumber');
 const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
-const cleanCSS = require('gulp-clean-css');
 const cache = require('gulp-cache');
 const image = require('gulp-image');
 const rimraf = require('gulp-rimraf');
 const rename = require('gulp-rename');
-const stripCssComments = require('gulp-strip-css-comments');
 const twig = require('gulp-twig');
 const htmlbeautify = require('gulp-html-beautify');
 const sourcemaps = require('gulp-sourcemaps');
@@ -24,6 +22,7 @@ const version = require('gulp-version-number');
 const notifier = require('node-notifier');
 const rsync = require('gulp-rsync');
 const confirm = require('gulp-confirm');
+const TerserPlugin = require("terser-webpack-plugin");
 
 const argv = require('yargs').argv;
 const developer = !!argv.developer;
@@ -32,13 +31,66 @@ const production = !developer;
 const isMode = developer ? 'dev' : 'prod';
 const dataMode = require(`./src/data/${isMode}.json`);
 const dataSite = require(`./src/data/site.json`);
-const webpackConfig = require('./webpack.config.js');
 const versionConfig = {
 	'value': '%DT%',
 	'append': {
 		'key': 'v',
 		'to': ['css', 'js'],
 	},
+};
+
+const webpackConfig = {
+	mode: production ? "production" : "development",
+	entry: {
+		"main.min": "./src/assets/js/index.js",
+	},
+	performance: {
+		hints: false,
+		maxEntrypointSize: 512000,
+		maxAssetSize: 512000
+	},
+	output: {
+		filename: "[name].js"
+	},
+	module: {
+		rules: [
+			{
+				test: /\.js$/,
+				exclude: /^_(\w+)(\.js)$|node_modules/,
+				use: {
+					loader: 'babel-loader'
+				}
+			},
+		]
+	},
+	optimization: {
+		splitChunks: {
+			chunks: 'all',
+			maxInitialRequests: Infinity,
+			minSize: 0,
+			cacheGroups: {
+				vendor: {
+					test: /[\\/]node_modules[\\/]/,
+					name: "vendor.min"
+				},
+			},
+		},
+		minimize: production,
+		minimizer: [
+			new TerserPlugin({
+        test: /\.js(\?.*)?$/i,
+				parallel: true,
+        terserOptions: {
+          mangle: true,
+					sourceMap: !production,
+          output: {
+            comments: false,
+          },
+        },
+      })
+		],
+	},
+	plugins: []
 };
 
 /* пути */
