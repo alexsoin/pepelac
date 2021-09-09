@@ -1,7 +1,7 @@
 root = true
 
 [*]
-indent_style = space
+indent_style = tab
 indent_size = 2
 end_of_line = lf
 insert_final_newline = true
@@ -12,3 +12,14 @@ charset = utf-8
 indent_style = ignore
 trim_trailing_whitespace = false
 insert_final_newline = ignore
+
+[*.{md,txt}]
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = false
+
+[Makefile]
+indent_style = tab
+
+[CHANGELOG.md]
+indent_size = false
