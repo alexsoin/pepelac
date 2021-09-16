@@ -1,3 +1,13 @@
+
+![template engine - twig](https://img.shields.io/static/v1?label=template+engine&message=twig&color=%2300A95C&style=for-the-badge)
+![node.js](https://img.shields.io/static/v1?label=&message=node.js&color=%23339933&style=for-the-badge&logo=node.js&logoColor=%23333)
+![webpack](https://img.shields.io/static/v1?label=&message=webpack&color=%238DD6F9&style=for-the-badge&logo=webpack&logoColor=%23333)
+![gulp](https://img.shields.io/static/v1?label=&message=gulp&color=%23CF4647&style=for-the-badge&logo=gulp&logoColor=%23333)
+![babel](https://img.shields.io/static/v1?label=&message=babel&color=%23F9DC3E&style=for-the-badge&logo=babel&logoColor=%23333)
+![bootstrap](https://img.shields.io/static/v1?label=&message=bootstrap&color=%237952B3&style=for-the-badge&logo=bootstrap&logoColor=%23333)
+![sass](https://img.shields.io/static/v1?label=&message=sass&color=%23CC6699&style=for-the-badge&logo=sass&logoColor=%23333)
+![javascript](https://img.shields.io/static/v1?label=&message=javascript&color=%23F7DF1E&style=for-the-badge&logo=javascript&logoColor=%23333)
+
 # Gulp + Webpack starter kit - Окружение для разработки веб-проектов
 
 Современный стартовый инструментарий для веб-разработки с использованием Gulp Task Runner и Webpack bundler.
