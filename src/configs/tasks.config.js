@@ -8,7 +8,8 @@ const cache = require('gulp-cache');
 const image = require('gulp-image');
 const rimraf = require('gulp-rimraf');
 const rename = require('gulp-rename');
-const twig = require('gulp-twig');
+const twing = require('gulp-twing');
+const { TwingEnvironment, TwingLoaderRelativeFilesystem } = require('twing');
 const htmlbeautify = require('gulp-html-beautify');
 const sourcemaps = require('gulp-sourcemaps');
 const gulpif = require('gulp-if');
@@ -39,13 +40,15 @@ exports.clean = function clean() {
 
 /** Создание html страниц */
 exports.templates = function templates() {
+	const envTwing = new TwingEnvironment(new TwingLoaderRelativeFilesystem(), {
+		debug: true,
+		cache: false,
+		autoescape: false,
+	});
+	const data = { mode: dataMode, site: dataSite };
+
 	return gulp.src(paths.src.twig)
-		.pipe(twig({
-			data: {
-				mode: dataMode,
-				site: dataSite
-			}
-	}))
+		.pipe(twing(envTwing, data))
 		.pipe(gulpif(production, htmlbeautify()))
 		.pipe(gulpif(production, version(versionConfig)))
 		.pipe(gulp.dest(paths.dist.html));
