@@ -67,24 +67,32 @@ npm install --save-prod название_пакета
 
 ## Как использовать окружение
 
-**Режим живого сервера**
+### Режим живого сервера
 
 - `npm run watch` - сборка и запуск live-server в режиме developer
 - `npm run prodwatch` - сборка и запуск live-server в режиме production
 
-**Режим сборки**
+### Режим сборки
 
 - `npm run build` - сборка проекта в режиме production
 - `npm run devbuild` - сборка проекта в режиме developer
 
-**Выборочная сборка**:
+### Список gulp задач:
 
-- `gulp templates` - сборка html файлов
-- `gulp styles` - сборка css стилей
-- `gulp scripts` - сборка js скриптов
-- `gulp fonts` - сборка шрифтов
-- `gulp images` - сборка картинок
-- `gulp clean` - очистка папки конечной сборки
+- `gulp clean` - Очистка папки dist
+- `gulp templates` - Создание html страниц
+- `gulp styles` - Сборка файлов стилей css
+- `gulp scripts` - Сборка javascript файлов
+- `gulp fonts` - Перемещение шрифтов
+- `gulp images` - Обработка картинок
+- `gulp moveStatic` - Перемещение статических файлов
+- `gulp createDeploy` - Создание файла **deploy.json** для настройки деплоя
+
+### Деплой собранных файлов на сервер
+
+- `npm run deploy` - Деплой собранных файлов на сервер, указанный как **default** в файле deploy.json
+- `npm run deploy:dev` - Деплой собранных файлов на сервер, указанный как **dev** в файле deploy.json
+- `npm run deploy:prod` - Деплой собранных файлов на сервер, указанный как **prod** в файле deploy.json
 
 ## Список инструментов
 
@@ -119,6 +127,12 @@ npm install --save-prod название_пакета
 │   │       ├── fonts.scss      # Подключение шрифтов
 │   │       ├── index.scss      # Точка входа scss файлов
 │   │       └── variables.scss  # Переменные стилей
+│   ├── configs                 # Файлы конфигураций
+│   │   ├── deploy.config.js    # Настройка деплоя
+│   │   ├── paths.config.js     # Настройки путей проекта
+│   │   ├── tasks.config.js     # Задачи gulp
+│   │   ├── version.config.js   # Настройки для плагина gulp-version-number
+│   │   └── webpack.config.js   # Настройки webpack
 │   ├── data/                   # json файлы для вывода данных при разработке
 │   │   ├── dev.json            # Вывод данных при develop разработке
 │   │   ├── prod.json           # Вывод данных при production разработке
@@ -129,9 +143,7 @@ npm install --save-prod название_пакета
 │       │   └── base.twig       # Базовый шаблон
 │       └── partials/           # Части часто используемого кода на страницах
 │           └── header.twig     # header
-├── static/                     # Статичные файлы, которые будут просто перенесены в dist
-│   └── favicon.ico             # favicon
-└── webpack.config.js           # Настройки webpack
+└── static/                     # Статичные файлы, которые будут просто перенесены в dist
 ```
 
 ### Директория src/js/
