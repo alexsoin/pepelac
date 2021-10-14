@@ -40,12 +40,21 @@ exports.clean = function clean() {
 
 /** Создание html страниц */
 exports.templates = function templates() {
+	const listHtml = fs.readdirSync(paths.src.listHtml)
+		.filter(i => i.includes('.twig') && !i.includes('ui.twig'))
+		.map(i => {
+			const htmlContent = fs.readFileSync(`${paths.src.listHtml}/${i}`, 'utf8');
+			const title = /{% set title = "([^"]+)"/.exec(htmlContent)[1] || '';
+			const url = i.replace('.twig', '.html');
+
+			return { url, title };
+		});
 	const envTwing = new TwingEnvironment(new TwingLoaderRelativeFilesystem(), {
 		debug: true,
 		cache: false,
 		autoescape: false,
 	});
-	const data = { mode: dataMode, site: dataSite };
+	const data = { listHtml, mode: dataMode, site: dataSite };
 
 	return gulp.src(paths.src.twig)
 		.pipe(twing(envTwing, data))

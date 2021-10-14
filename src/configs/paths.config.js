@@ -29,6 +29,7 @@ module.exports = {
 	src: {
 		static: path.join(dirRoot, dirStatic, '**/*.*'),
 		twig: path.join(dirRoot, dirSrc, 'views', '*.twig'),
+		listHtml: path.join(dirRoot, dirSrc, 'views'),
 		script: path.join(dirRoot, dirSrc, dirAssets, 'js', 'index.js'),
 		style: path.join(dirRoot, dirSrc, dirAssets, 'scss', 'index.scss'),
 		img: path.join(dirRoot, dirSrc, dirAssets, 'img', '**/*.*'),

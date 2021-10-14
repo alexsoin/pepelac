@@ -1,0 +1,51 @@
+{% extends "layout/base.twig" %}
+
+{% set title = "Список ссылок на страницы" %}
+
+{% block header %}{% endblock %}
+
+{% block content %}
+	<div class="container my-5">
+		<div class="row">
+			<div class="col-12">
+				<h1>Список ссылок на страницы</h1>
+			</div>
+			<div class="col-12">
+				<div class="h4 my-4" style="opacity: .5;">Всего страниц: {{ listHtml|length }}</div>
+			</div>
+			<div class="col-12">
+				<div class="list-group">
+				{% for html in listHtml %}
+					<a class="list-group-item list-group-item-action d-lg-flex justify-content-between align-items-center js-link-group" href="{{ html.url }}" target="_blank"><div>{{ html.title }}</div><code class="d-inline-block badge text-danger bg-light">{{ html.url }}</code></a>
+				{% endfor %}
+				</div>
+			</div>
+			<div class="col-12 mt-5">
+				<div><button id="download-list" class="btn btn-primary">Скачать список страниц</button></div>
+			</div>
+		</div>
+	</div>
+	<script>
+		/** Скачивание файла */
+		function download(text, filename, type = "text/plain"){
+			const blob = new Blob([text], {type});
+			const url = window.URL.createObjectURL(blob);
+			const a = document.createElement("a");
+			a.href = url;
+			a.download = filename;
+			a.click();
+		}
+
+		const listHtml = {{ listHtml|json_encode() }};
+		const contentLinks = listHtml.map(i => `${i.title} - ${i.url}`).join('\n');
+
+
+		/** Пометка ссылок на которые был переход */
+		document.querySelectorAll('.js-link-group').forEach(link => link.addEventListener('click', function() { this.classList.add('active') }))
+
+		/** Событие скачивание списка страниц */
+		document.getElementById('download-list').addEventListener('click', function() {
+			download(contentLinks, 'Список страниц сайта.txt')
+		})
+	</script>
+{% endblock %}
