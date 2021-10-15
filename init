@@ -1,18 +1,44 @@
 #!/bin/bash
 
-echo "Введите название проекта: "
+# functions ---
+function message() {
+	if ! [[ $2 ]]; then
+		echo -e '\033[1;32m'$1'\033[0m'
+	else
+		echo -e '\033[1;32m'$1'\033[1;37m → \033[1;34m'$2'\033[0m'
+	fi
+}
+
+function message-success() {
+	if ! [[ $2 ]]; then
+		echo -e '\033[1;33m'$1'\033[0m'
+	else
+		echo -e '\033[1;33m'$1'\033[1;37m → \033[1;35m'$2'\033[0m'
+	fi
+}
+
+function addline() {
+	echo -e '\033[1;36m======================================\033[0m'
+}
+# --- functions
+
+message "Введите название проекта: "
 read name
 
-echo "Введите описание проекта: "
+message "Введите описание проекта: "
 read description
 
+addline
 echo -e "\n"
 
-# package.json
+# package.json ---
 sed -i -e 's/"name": "gulp-webpack-starter-kit"/"name": "'"$name"'"/' package.json
 sed -i -e 's/"description": "Gulp + Webpack starter kit - Окружение для разработки веб-проектов"/"description": "'"$description"'"/' package.json
 
-# README.md
+message "Добавлено название проекта и его описание" "package.json"
+# --- package.json
+
+# README.md ---
 echo -e "# $name\n$description\n" > README.md
 echo -e "## Как запустить\n" >> README.md
 echo -e "**Установить зависимости**" >> README.md
@@ -25,15 +51,30 @@ echo -e "- \`npm run build\`       - сборка проекта в режиме
 echo -e "- \`npm run devbuild\`    - сборка проекта в режиме developer" >> README.md
 echo -e "\nДокументация: https://github.com/alexsoin/gw-starter-kit" >> README.md
 
-# rm & git init
-rm ./src/assets/img/gwst.png
-rm ./static/favicon.ico
-rm -fr .git
-git init
-rm -fr init
+message "Создан файл" "README.md" 
+# --- README.md
 
-# complete
-echo -e "\033[32m\n\n======================================"
-echo -e "  Проект успешно проинициализирован!  "
-echo -e "======================================\n"
-echo -e "\033[31m!!! Не забудьте при необходимости отредактировать содержимое файлов \033[47mindex.js\033[0m\033[31m, \033[47mindex.scss\033[0m\033[31m, \033[47mvariables.scss\033[0m\033[31m и \033[47mindex.twig\033[0m\n\n"
+# rm & git init ---
+rm ./src/assets/img/gwst.png
+message "Удален файл" "./src/assets/img/gwst.png"
+
+rm ./static/favicon.ico
+message "Удален файл" "./static/favicon.ico"
+
+rm -fr .git
+message "Удален каталог" ".git"
+
+git init
+message "Инициализирован" "git init"
+
+rm -fr init
+# --- rm & git init
+
+# complete ---
+echo -e "\n"
+addline
+message-success "	Проект успешно проинициализирован!"
+message-success "	Не забудьте при необходимости отредактировать содержимое файлов" "index.js, index.scss, variables.scss и index.twig"
+addline
+echo -e "\n"
+# --- complete
