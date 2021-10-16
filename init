@@ -32,10 +32,12 @@ addline
 echo -e "\n"
 
 # package.json ---
-sed -i -e 's/"name": "gulp-webpack-starter-kit"/"name": "'"$name"'"/' package.json
-sed -i -e 's/"description": "Gulp + Webpack starter kit - Окружение для разработки веб-проектов"/"description": "'"$description"'"/' package.json
+PACKAGE_AUTHOR=$(git config --global user.email)
 
-message "Добавлено название проекта и его описание" "package.json"
+message "Добавление автора проекта($PACKAGE_AUTHOR)" "package.json"; npx npe author $PACKAGE_AUTHOR &>/dev/null
+message "Добавление названия проекта" "package.json"; npx npe name $name &>/dev/null
+message "Добавление описания проекта" "package.json"; npx npe description $description &>/dev/null
+message "Добавление версии проекта" "package.json"; npx npe version '1.0.0' &>/dev/null
 # --- package.json
 
 # README.md ---
