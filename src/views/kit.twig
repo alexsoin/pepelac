@@ -1,0 +1,63 @@
+{% extends "layout/base.twig" %}
+
+{% set title = "Типографика" %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12 mb-5">
+				<h2>Заголовки</h2>
+
+				<div class="row mt-3">
+					<div class="col-lg-auto">
+						<h1>&lt;h1&gt;&lt;/h1&gt;</h1>
+						<h2>&lt;h2&gt;&lt;/h2&gt;</h2>
+						<h3>&lt;h3&gt;&lt;/h3&gt;</h3>
+						<h4>&lt;h4&gt;&lt;/h4&gt;</h4>
+						<h5>&lt;h5&gt;&lt;/h5&gt;</h5>
+						<h6>&lt;h6&gt;&lt;/h6&gt;</h6>
+					</div>
+					<div class="col-lg-auto">
+						<div class="h1">&lt;div class="h1"&gt;&lt;/div&gt;</div>
+						<div class="h2">&lt;div class="h2"&gt;&lt;/div&gt;</div>
+						<div class="h3">&lt;div class="h3"&gt;&lt;/div&gt;</div>
+						<div class="h4">&lt;div class="h4"&gt;&lt;/div&gt;</div>
+						<div class="h5">&lt;div class="h5"&gt;&lt;/div&gt;</div>
+						<div class="h6">&lt;div class="h6"&gt;&lt;/div&gt;</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 mb-5">
+				<h2>Кнопки</h2>
+
+				<div class="mt-3 d-flex gap-3">
+					<button type="button" class="btn btn-primary">btn-primary</button>
+					<button type="button" class="btn btn-secondary">btn-secondary</button>
+					<button type="button" class="btn btn-success">btn-success</button>
+					<button type="button" class="btn btn-danger">btn-danger</button>
+					<button type="button" class="btn btn-warning">btn-warning</button>
+					<button type="button" class="btn btn-info">btn-info</button>
+					<button type="button" class="btn btn-light">btn-light</button>
+					<button type="button" class="btn btn-dark">btn-dark</button>
+					<button type="button" class="btn btn-link">btn-link</button>
+				</div>
+			</div>
+			<div class="col-12 mb-5">
+				<h2>Текст</h2>
+
+				<div class="mt-3">
+					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non ducimus, eaque placeat dolore <a href="#">libero iste iusto dolores</a> velit distinctio saepe, magni quidem sunt, atque delectus maiores consequatur consectetur aliquid blanditiis!</p>
+					<ul>
+						<li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem, impedit?</li>
+						<li>Lorem ipsum dolor sit.</li>
+						<ul>
+							<li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+							<li>Lorem ipsum dolor sit amet.</li>
+						</ul>
+					</ul>
+					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur, ducimus iure nam earum <code>sequi nihil suscipit</code> delectus architecto quaerat quae rerum? Illum ipsa architecto doloribus esse dolorum autem eos maiores magni, voluptate praesentium ut, corporis doloremque cum nostrum voluptatibus minus quasi eius consectetur minima totam sapiente soluta tempore pariatur ipsum.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
