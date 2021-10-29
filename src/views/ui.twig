@@ -2,14 +2,9 @@
 
 {% set title = "Список ссылок на страницы" %}
 
-{% block header %}{% endblock %}
-
 {% block content %}
-	<div class="container my-5">
+	<div class="container mb-5">
 		<div class="row">
-			<div class="col-12">
-				<h1>Список ссылок на страницы</h1>
-			</div>
 			<div class="col-12">
 				<div class="h4 my-4" style="opacity: .5;">Всего страниц: {{ listHtml|length }}</div>
 			</div>
@@ -21,7 +16,7 @@
 				</div>
 			</div>
 			<div class="col-12 mt-5">
-				<div><button id="download-list" class="btn btn-primary">Скачать список страниц</button></div>
+				<div><button id="download-list" class="btn btn-outline-success">Скачать список страниц</button></div>
 			</div>
 		</div>
 	</div>
