@@ -2,17 +2,16 @@ const gulp = require('gulp');
 const browserSync = require('browser-sync').create();
 
 const paths = require('./src/configs/paths.config.js');
-const {
-	moveStatic,
-	templates,
-	styles,
-	scripts,
-	fonts,
-	images,
-	createDeploy,
-	deployRsync,
-	clean
-} = require('./src/configs/tasks.config.js');
+
+const { clean } = require('./src/configs/tasks/clean');
+const { moveStatic } = require('./src/configs/tasks/move-static');
+const { templates } = require('./src/configs/tasks/templates');
+const { styles } = require('./src/configs/tasks/styles');
+const { scripts } = require('./src/configs/tasks/scripts');
+const { fonts } = require('./src/configs/tasks/fonts');
+const { images } = require('./src/configs/tasks/images');
+const { deployCreate } = require('./src/configs/tasks/deploy-create');
+const { deployRsync } = require('./src/configs/tasks/deploy-rsync');
 
 exports.moveStatic = moveStatic;
 exports.templates = templates;
@@ -20,7 +19,7 @@ exports.styles = styles;
 exports.scripts = scripts;
 exports.fonts = fonts;
 exports.images = images;
-exports.createDeploy = createDeploy;
+exports.deployCreate = deployCreate;
 exports.deploy = deployRsync;
 exports.clean = clean;
 
