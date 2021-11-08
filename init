@@ -34,7 +34,7 @@ echo -e "\n"
 # package.json ---
 PACKAGE_AUTHOR=$(git config --global user.email)
 
-message "Добавление автора проекта($PACKAGE_AUTHOR)" "package.json"; npx npe author "$PACKAGE_AUTHOR" &>/dev/null
+message "Добавление автора проекта($PACKAGE_AUTHOR)" "package.json"; npx npe author "$PACKAGE_AUTHOR"
 message "Добавление названия проекта" "package.json"; npx npe name "$name" &>/dev/null
 message "Добавление описания проекта" "package.json"; npx npe description "$description" &>/dev/null
 message "Добавление версии проекта" "package.json"; npx npe version "1.0.0" &>/dev/null
