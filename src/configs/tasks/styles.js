@@ -1,20 +1,24 @@
-const gulp = require('gulp');
-const plumber = require('gulp-plumber');
-const sass = require('gulp-sass')(require('sass'));
-const autoprefixer = require('gulp-autoprefixer');
-const rename = require('gulp-rename');
-const sourcemaps = require('gulp-sourcemaps');
-const gulpif = require('gulp-if');
-const notifier = require('node-notifier');
+import gulp from "gulp";
+import plumber from "gulp-plumber";
+import dartSass from "sass";
+import gulpSass from "gulp-sass";
+import autoprefixer from "gulp-autoprefixer";
+import rename from "gulp-rename";
+import sourcemaps from "gulp-sourcemaps";
+import gulpif from "gulp-if";
+import notifier from "node-notifier";
+import yargs from "yargs";
 
-const argv = require('yargs').argv;
+import paths from "../paths.config.js";
+
+
+const { argv } = yargs;
 const developer = !!argv.developer;
-
-const paths = require('../paths.config.js');
+const sass = gulpSass(dartSass);
 
 
 /** Сборка файлов стилей scss */
-exports.styles = function styles() {
+export default function styles() {
 	return gulp.src(paths.src.style)
 		.pipe(gulpif(developer, sourcemaps.init({loadMaps: true, largeFile: true})))
 		.pipe(plumber())

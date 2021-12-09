@@ -1,9 +1,12 @@
-const TerserPlugin = require("terser-webpack-plugin");
-const argv = require('yargs').argv;
+import TerserPlugin from "terser-webpack-plugin";
+import yargs from "yargs";
+
+
+const { argv } = yargs;
 const developer = !!argv.developer;
 const production = !developer;
 
-module.exports = {
+export default {
 	mode: production ? "production" : "development",
 	entry: {
 		"main.min": "./src/assets/js/index.js",

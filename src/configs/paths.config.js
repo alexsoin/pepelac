@@ -1,5 +1,5 @@
-const path = require('path');
-const deployConfig = require('./deploy.config.js');
+import path from "path";
+import deployConfig from "./deploy.config.js";
 
 const dirRoot = process.cwd();
 const dirDist = 'dist';
@@ -7,7 +7,7 @@ const dirAssets = 'assets';
 const dirSrc = 'src';
 const dirStatic = 'static';
 
-module.exports = {
+export default {
 	dirs: {
 		root: dirRoot,
 		dist: dirDist,
@@ -27,6 +27,7 @@ module.exports = {
 		fonts: path.join(dirRoot, dirDist, dirAssets, 'fonts')
 	},
 	src: {
+		data: path.join(dirRoot, dirSrc, 'data'),
 		static: path.join(dirRoot, dirStatic, '**/*.*'),
 		twig: path.join(dirRoot, dirSrc, 'views', '*.twig'),
 		listHtml: path.join(dirRoot, dirSrc, 'views'),

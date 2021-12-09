@@ -1,15 +1,15 @@
-const fs = require('fs');
-const gulp = require('gulp');
-const notifier = require('node-notifier');
-const rsync = require('gulp-rsync');
-const confirm = require('gulp-confirm');
+import fs from "fs";
+import gulp from "gulp";
+import notifier from "node-notifier";
+import rsync from "gulp-rsync";
+import confirm from "gulp-confirm";
 
-const deployConfig = require('../deploy.config.js');
-const paths = require('../paths.config.js');
+import deployConfig from "../deploy.config.js";
+import paths from "../paths.config.js";
 
 
 /** Деплой данных на сервер */
-exports.deployRsync = function deployRsync(done) {
+export default function deployRsync(done) {
 	if(!fs.existsSync(paths.deploy)) {
 		console.log(deployConfig.messages.deploy.empty);
 		notifier.notify({ title: deployConfig.messages.deploy.title, message: deployConfig.messages.deploy.empty });

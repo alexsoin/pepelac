@@ -1,10 +1,10 @@
-const gulp = require('gulp');
+import gulp from "gulp";
 
-const paths = require('../paths.config.js');
+import paths from "../paths.config.js";
 
 
 /** Перемещение шрифтов */
-exports.fonts = function fonts() {
+export default function fonts() {
 	return gulp.src(paths.src.fonts)
 		.pipe(gulp.dest(paths.dist.fonts));
 }

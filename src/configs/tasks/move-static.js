@@ -1,10 +1,10 @@
-const gulp = require('gulp');
+import gulp from "gulp";
 
-const paths = require('../paths.config.js');
+import paths from "../paths.config.js";
 
 
 /** Перемещение статических данных */
-exports.moveStatic = function moveStatic() {
+export default function moveStatic() {
 	return gulp.src(paths.src.static)
 		.pipe(gulp.dest(paths.dist.static));
 }

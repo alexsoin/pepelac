@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 	'value': '%DT%',
 	'append': {
 		'key': 'v',
