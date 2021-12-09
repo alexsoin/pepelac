@@ -1,24 +1,25 @@
-const fs = require('fs');
-const gulp = require('gulp');
-const twing = require('gulp-twing');
-const { TwingEnvironment, TwingLoaderRelativeFilesystem } = require('twing');
-const htmlbeautify = require('gulp-html-beautify');
-const gulpif = require('gulp-if');
-const version = require('gulp-version-number');
+import fs from 'fs';
+import gulp from "gulp";
+import twing from "gulp-twing";
+import { TwingEnvironment, TwingLoaderRelativeFilesystem } from "twing";
+import htmlbeautify from "gulp-html-beautify";
+import gulpif from "gulp-if";
+import version from "gulp-version-number";
+import yargs from "yargs";
 
-const argv = require('yargs').argv;
+import versionConfig from "../version.config.js";
+import paths from "../paths.config.js";
+
+
+const { argv } = yargs;
+const dataSite = JSON.parse(fs.readFileSync(`${paths.src.data}/site.json`));
 const developer = !!argv.developer;
 const production = !developer;
 const isMode = developer ? 'dev' : 'prod';
-
-const dataMode = require(`../../data/${isMode}.json`);
-const dataSite = require(`../../data/site.json`);
-const versionConfig = require('../version.config.js');
-const paths = require('../paths.config.js');
-
+const dataMode = JSON.parse(fs.readFileSync(`${paths.src.data}/${isMode}.json`));
 
 /** Создание html страниц */
-exports.templates = function templates() {
+export default function templates() {
 	const listHtml = fs.readdirSync(paths.src.listHtml)
 		.filter(i => i.includes('.twig') && !i.includes('ui.twig'))
 		.map(i => {

@@ -1,27 +1,19 @@
-const gulp = require('gulp');
-const browserSync = require('browser-sync').create();
+import gulp from "gulp";
+import bserver from "browser-sync";
 
-const paths = require('./src/configs/paths.config.js');
+import paths from "./src/configs/paths.config.js";
+import clean from "./src/configs/tasks/clean.js";
+import moveStatic from "./src/configs/tasks/move-static.js";
+import templates from "./src/configs/tasks/templates.js";
+import styles from "./src/configs/tasks/styles.js";
+import scripts from "./src/configs/tasks/scripts.js";
+import fonts from "./src/configs/tasks/fonts.js";
+import images from "./src/configs/tasks/images.js";
+import deployCreate from "./src/configs/tasks/deploy-create.js";
+import deployRsync from "./src/configs/tasks/deploy-rsync.js";
 
-const { clean } = require('./src/configs/tasks/clean');
-const { moveStatic } = require('./src/configs/tasks/move-static');
-const { templates } = require('./src/configs/tasks/templates');
-const { styles } = require('./src/configs/tasks/styles');
-const { scripts } = require('./src/configs/tasks/scripts');
-const { fonts } = require('./src/configs/tasks/fonts');
-const { images } = require('./src/configs/tasks/images');
-const { deployCreate } = require('./src/configs/tasks/deploy-create');
-const { deployRsync } = require('./src/configs/tasks/deploy-rsync');
 
-exports.moveStatic = moveStatic;
-exports.templates = templates;
-exports.styles = styles;
-exports.scripts = scripts;
-exports.fonts = fonts;
-exports.images = images;
-exports.deployCreate = deployCreate;
-exports.deploy = deployRsync;
-exports.clean = clean;
+const browserSync = bserver.create();
 
 // слежка
 function watch() {
@@ -45,13 +37,15 @@ function server() {
 }
 
 /** Задачи */
-gulp.task('default', gulp.series(
+export { moveStatic, templates, styles, scripts, fonts, images, deployCreate, deployRsync, clean };
+
+export const build = gulp.series(
+	clean,
+	gulp.parallel(moveStatic, fonts, images, styles, scripts, templates)
+)
+
+export default gulp.series(
 	clean,
 	gulp.parallel(moveStatic, fonts, images, styles, scripts, templates),
 	gulp.parallel(watch, server)
-));
-
-gulp.task('build', gulp.series(
-	clean,
-	gulp.parallel(moveStatic, fonts, images, styles, scripts, templates)
-));
+)

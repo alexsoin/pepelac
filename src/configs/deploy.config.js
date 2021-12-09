@@ -18,7 +18,7 @@ const tmpContent = {
 /** Имя файла деплоя */
 const filename = "deploy.json";
 
-module.exports = {
+export default {
 	tmp: {
 		default: 'dev',
 		dev: tmpContent,
