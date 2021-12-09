@@ -3,7 +3,6 @@
   "version": "2.0.0",
   "description": "Gulp + Webpack starter kit - Окружение для разработки веб-проектов",
   "author": "alexsoin",
-  "type": "module",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -32,6 +31,7 @@
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.6",
+    "@babel/register": "^7.16.0",
     "babel-loader": "^8.2.2",
     "browser-sync": "^2.27.5",
     "gulp": "^4.0.2",
