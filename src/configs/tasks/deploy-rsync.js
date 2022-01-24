@@ -3,9 +3,12 @@ import gulp from "gulp";
 import notifier from "node-notifier";
 import rsync from "gulp-rsync";
 import confirm from "gulp-confirm";
+import yargs from "yargs";
 
 import deployConfig from "../deploy.config.js";
 import paths from "../paths.config.js";
+
+const { argv } = yargs;
 
 
 /** Деплой данных на сервер */
