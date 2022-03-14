@@ -39,7 +39,7 @@
     "gulp-confirm": "^1.0.8",
     "gulp-html-beautify": "^1.0.1",
     "gulp-if": "^3.0.0",
-    "gulp-image": "^6.2.1",
+    "gulp-image": "6.2.1",
     "gulp-plumber": "^1.2.1",
     "gulp-rename": "^2.0.0",
     "gulp-rimraf": "^1.0.0",
