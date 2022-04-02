@@ -38,7 +38,9 @@ export default function templates() {
 
 	return gulp.src(paths.src.twig)
 		.pipe(twing(envTwing, data))
-		.pipe(gulpif(production, htmlbeautify()))
+		.pipe(gulpif(production, htmlbeautify({
+			"indent_with_tabs": true,
+		})))
 		.pipe(gulpif(production, version(versionConfig)))
 		.pipe(gulp.dest(paths.dist.html));
 }
