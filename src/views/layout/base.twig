@@ -19,6 +19,7 @@
 {% endblock %}
 </head>
 <body>
+{% block page %}
 	{% block header %}
 		{% include '../partials/header.twig' %}
 	{% endblock %}
@@ -28,10 +29,11 @@
 	{% block footer %}
 		{% include '../partials/footer.twig' %}
 	{% endblock %}
+{% endblock %}
 
-	{% block scripts_page %}{% endblock %}
-	{% block scripts %}
-		<script src="/assets/js/main.min.js"></script>
-	{% endblock %}
+{% block scripts_page %}{% endblock %}
+{% block scripts %}
+	<script src="/assets/js/main.min.js"></script>
+{% endblock %}
 </body>
 </html>
