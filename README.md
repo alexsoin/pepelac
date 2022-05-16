@@ -8,13 +8,11 @@
 ![sass](https://img.shields.io/static/v1?label=&message=sass&color=%23CC6699&style=for-the-badge&logo=sass&logoColor=%23333)
 ![javascript](https://img.shields.io/static/v1?label=&message=js&color=%23F7DF1E&style=for-the-badge&logo=javascript&logoColor=%23333)
 
-# Gulp + Webpack starter kit - Окружение для разработки веб-проектов
+# PEPELAC - frontend boilerplate
 
-Современный стартовый инструментарий для веб-разработки с использованием Gulp Task Runner и Webpack bundler.
+Современный инструментарий для веб-разработки с использованием Gulp Task Runner и Webpack bundler.
 
-Все задачи выполняются через Gulp. Webpack используется только для сборки Javascript.
-
-![](src/assets/img/gwst.png)
+![](src/assets/img/pepelac.svg)
 
 ## Требования к окружению
 

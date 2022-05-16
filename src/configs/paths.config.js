@@ -1,48 +1,34 @@
+import fs from "fs";
 import path from "path";
-import deployConfig from "./deploy.config.js";
 
 const dirRoot = process.cwd();
-const dirDist = 'dist';
-const dirAssets = 'assets';
-const dirSrc = 'src';
-const dirStatic = 'static';
+const dirAssets = "assets";
+const dirSrc = "src";
+const filesTwig = fs.readdirSync(path.join(dirRoot, dirSrc, "views")).filter((i) => i.includes(".twig"));
 
 export default {
-	dirs: {
+	dir: {
 		root: dirRoot,
-		dist: dirDist,
-		assets: dirAssets,
-		srs: dirSrc,
-		static: dirStatic,
+		twig: path.join(dirRoot, dirSrc, "views"),
 	},
-	deploy: path.join(dirRoot, deployConfig.filename),
-	root: path.join(dirRoot, dirDist),
-	clean: path.join(dirRoot, dirDist, '*'),
-	dist: {
-		static: path.join(dirRoot, dirDist),
-		html: path.join(dirRoot, dirDist),
-		js: path.join(dirRoot, dirDist, dirAssets, 'js'),
-		css: path.join(dirRoot, dirDist, dirAssets, 'css'),
-		img: path.join(dirRoot, dirDist, dirAssets, 'img'),
-		fonts: path.join(dirRoot, dirDist, dirAssets, 'fonts')
+	file: {
+		index: {
+			scss: path.join(dirRoot, dirSrc, dirAssets, "scss", "index.scss"),
+			js: path.join(dirRoot, dirSrc, dirAssets, "js", "index.js"),
+		},
+		name: {
+			js: "assets/js/[name].min.js?v=[chunkhash]",
+			css: "assets/css/main.min.css?v=[chunkhash]",
+		},
 	},
-	src: {
-		data: path.join(dirRoot, dirSrc, 'data'),
-		static: path.join(dirRoot, dirStatic, '**/*.*'),
-		twig: path.join(dirRoot, dirSrc, 'views', '*.twig'),
-		listHtml: path.join(dirRoot, dirSrc, 'views'),
-		script: path.join(dirRoot, dirSrc, dirAssets, 'js', 'index.js'),
-		style: path.join(dirRoot, dirSrc, dirAssets, 'scss', 'index.scss'),
-		img: path.join(dirRoot, dirSrc, dirAssets, 'img', '**/*.*'),
-		fonts: path.join(dirRoot, dirSrc, dirAssets, 'fonts', '**/*.*')
+	list: {
+		html: {
+			all: filesTwig,
+			twigs: filesTwig.map((i) => `${dirRoot}/src/views/${i}`),
+			filtered: filesTwig.filter((i) => !i.includes("ui.twig")),
+		},
 	},
-	watch: {
-		bs: path.join(dirRoot, dirDist, '**/*.*'),
-		static: `./${dirStatic}/'**/*.*`,
-		twig: `./${dirSrc}/views/**/*.twig`,
-		js: `./${dirSrc}/${dirAssets}/js/**/*.js`,
-		scss: `./${dirSrc}/${dirAssets}/scss/**/*.scss`,
-		img: `./${dirSrc}/${dirAssets}/img/**/*.*`,
-		fonts: `./${dirSrc}/${dirAssets}/fonts/**/*.*`
-	}
+	deploy: {
+		file: path.join(dirRoot, "deploy.json"),
+	},
 };

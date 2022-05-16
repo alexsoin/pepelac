@@ -1,65 +1,90 @@
 {
-  "name": "gulp-webpack-starter-kit",
-  "version": "2.1.0",
-  "description": "Gulp + Webpack starter kit - Окружение для разработки веб-проектов",
-  "author": "alexsoin",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/alexsoin/gw-starter-kit.git"
-  },
-  "browserslist": [
-    "last 2 version",
-    "not dead"
-  ],
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env"
-      ]
-    ]
-  },
-  "scripts": {
-    "watch": "gulp --developer",
-    "prodwatch": "gulp",
-    "devbuild": "gulp build --developer",
-    "build": "gulp build",
-    "deploy": "gulp deployRsync",
-    "deploy:dev": "gulp deployRsync --deploy dev",
-    "deploy:prod": "gulp deployRsync --deploy prod"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.15.5",
-    "@babel/preset-env": "^7.15.6",
-    "@babel/register": "^7.16.0",
-    "babel-loader": "^8.2.2",
-    "browser-sync": "^2.27.5",
-    "eslint": "^8.13.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.26.0",
-    "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^8.0.0",
-    "gulp-confirm": "^1.0.8",
-    "gulp-html-beautify": "^1.0.1",
-    "gulp-if": "^3.0.0",
-    "gulp-image": "6.2.1",
-    "gulp-plumber": "^1.2.1",
-    "gulp-rename": "^2.0.0",
-    "gulp-rimraf": "^1.0.0",
-    "gulp-rsync": "^0.0.9",
-    "gulp-sass": "^5.0.0",
-    "gulp-sourcemaps": "^3.0.0",
-    "gulp-twing": "^4.0.0",
-    "gulp-version-number": "^0.2.4",
-    "node-notifier": "^10.0.0",
-    "sass": "^1.42.1",
-    "terser-webpack-plugin": "^5.2.4",
-    "twing": "^5.0.2",
-    "webpack": "^5.53.0",
-    "webpack-stream": "^7.0.0"
-  },
-  "dependencies": {
-    "@popperjs/core": "^2.10.1",
-    "bootstrap": "^5.1.1"
-  }
+	"name": "gulp-webpack-starter-kit",
+	"version": "2.1.0",
+	"description": "Gulp + Webpack starter kit - Окружение для разработки веб-проектов",
+	"author": "alexsoin",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/alexsoin/gw-starter-kit.git"
+	},
+	"scripts": {
+		"watch": "webpack serve --mode development --config src/configs/webpack.config.babel.js",
+		"build": "webpack --mode development --config src/configs/webpack.config.babel.js",
+		"watch:prod": "webpack serve --mode production --config src/configs/webpack.config.babel.js",
+		"build:prod": "webpack --mode production --config src/configs/webpack.config.babel.js",
+		"build:prod-local": "webpack --mode production --config src/configs/webpack.config.babel.js --env path-build='/local/'",
+		"deploy": "gulp deploy",
+		"deploy:create": "gulp deploy:create",
+		"deploy:dev": "gulp deploy -m=dev",
+		"deploy:prod": "gulp deploy -m=prod",
+		"lint": "npm run lint:js && npm run lint:scss",
+		"lint:js": "eslint src/assets/js/**/*.js --fix",
+		"lint:scss": "stylelint src/assets/scss/**/*.{sass,scss} --fix"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.17.10",
+		"@babel/preset-env": "^7.17.10",
+		"@babel/register": "^7.17.7",
+		"@squoosh/lib": "^0.4.0",
+		"@sumotto/beautify-html-webpack-plugin": "^1.0.0",
+		"autoprefixer": "10.4.5",
+		"babel-loader": "^8.2.5",
+		"copy-webpack-plugin": "^10.2.4",
+		"css-loader": "^6.7.1",
+		"css-minimizer-webpack-plugin": "^3.4.1",
+		"cssnano": "^5.1.7",
+		"eslint": "^8.15.0",
+		"eslint-config-airbnb-base": "^15.0.0",
+		"eslint-plugin-import": "^2.26.0",
+		"gulp": "^4.0.2",
+		"gulp-confirm": "^1.0.8",
+		"gulp-rsync": "^0.0.9",
+		"html-loader": "^3.1.0",
+		"html-webpack-plugin": "^5.5.0",
+		"image-minimizer-webpack-plugin": "^3.2.3",
+		"imagemin": "^8.0.1",
+		"imagemin-gifsicle": "^7.0.0",
+		"imagemin-mozjpeg": "^10.0.0",
+		"imagemin-pngquant": "^9.0.2",
+		"imagemin-svgo": "^10.0.1",
+		"mini-css-extract-plugin": "^2.6.0",
+		"postcss": "^8.4.13",
+		"postcss-loader": "^6.2.1",
+		"postcss-scss": "^4.0.4",
+		"postcss-sorting": "^7.0.1",
+		"raw-loader": "^4.0.2",
+		"sass": "^1.51.0",
+		"sass-loader": "^12.6.0",
+		"style-loader": "^3.3.1",
+		"stylelint": "^14.8.2",
+		"stylelint-config-standard-scss": "^3.0.0",
+		"stylelint-order": "^5.0.0",
+		"terser-webpack-plugin": "^5.3.1",
+		"twig-html-loader": "^0.1.9",
+		"webpack": "^5.72.1",
+		"webpack-cli": "^4.9.2",
+		"webpack-dev-server": "^4.9.0",
+		"webpack-merge": "^5.8.0",
+		"webpackbar": "^5.0.2",
+		"yargs": "^17.5.0"
+	},
+	"dependencies": {
+		"@popperjs/core": "^2.10.1",
+		"bootstrap": "^5.1.1"
+	},
+	"engines": {
+		"node": ">=16"
+	},
+	"browserslist": [
+		"last 2 version",
+		"not dead"
+	],
+	"babel": {
+		"presets": [
+			[
+				"@babel/preset-env"
+			]
+		]
+	}
 }

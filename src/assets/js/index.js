@@ -1,6 +1,6 @@
 import "bootstrap";
 
-const aaa = "Rick";
+const rocket = "PEPELAC";
 
-console.log(`hi, ${aaa}!`);
+console.log(`hi, ${rocket}!`);
 console.log("Use VanillaJS: ", document.querySelector("h1"));
