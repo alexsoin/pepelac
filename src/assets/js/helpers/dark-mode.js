@@ -15,16 +15,26 @@ function themeIsDark() {
 	return localDarkTheme ? isLocalDarkTheme : darkScheme.matches;
 }
 
+function removeTheme() {
+	localStorage.removeItem(storageKey);
+	switchTheme(themeIsDark());
+}
+
 const isDark = themeIsDark();
 switchTheme(isDark);
 darkScheme.addEventListener("change", (e) => switchTheme(e.matches) && toggleLocalTheme(e.matches));
 
-document.querySelectorAll(".toggle-theme").forEach((btn) => btn.addEventListener("click", (e) => {
-	e.preventDefault();
-	const isDarkTheme = !themeIsDark();
+document.querySelectorAll(".js--toggle-theme")
+	.forEach((btn) => btn.addEventListener("click", (e) => {
+		e.preventDefault();
+		const isDarkTheme = !themeIsDark();
 
-	console.log({ isDarkTheme });
+		toggleLocalTheme(isDarkTheme);
+		switchTheme(isDarkTheme);
+	}));
 
-	toggleLocalTheme(isDarkTheme);
-	switchTheme(isDarkTheme);
-}));
+document.querySelectorAll(".js--remove-now-theme")
+	.forEach((btn) => btn.addEventListener("click", (e) => {
+		e.preventDefault();
+		removeTheme();
+	}));
