@@ -1,13 +1,7 @@
 {
-	"name": "gulp-webpack-starter-kit",
-	"version": "2.1.0",
-	"description": "Gulp + Webpack starter kit - Окружение для разработки веб-проектов",
-	"author": "alexsoin",
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/alexsoin/gw-starter-kit.git"
-	},
+	"name": "pepelac",
+	"version": "1.0.0",
+	"description": "",
 	"scripts": {
 		"watch": "webpack serve --mode development --config src/configs/webpack.config.babel.js",
 		"build": "webpack --mode development --config src/configs/webpack.config.babel.js",
@@ -76,6 +70,9 @@
 		"@popperjs/core": "^2.10.1",
 		"bootstrap": "^5.1.1"
 	},
+	"keywords": [],
+	"author": "",
+	"license": "MIT",
 	"engines": {
 		"node": ">=16"
 	},

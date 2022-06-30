@@ -121,7 +121,7 @@ npm install --save-prod название_пакета
 │   │   │   └── index.js        # Точка входа js файлов
 │   │   └── scss/               # scss стили
 │   │       ├── base.scss       # Пользовательские стили
-│   │       ├── _bootstrap.scss # Подключение bootstrap стилей
+│   │       ├── bootstrap.scss # Подключение bootstrap стилей
 │   │       ├── fonts.scss      # Подключение шрифтов
 │   │       ├── index.scss      # Точка входа scss файлов
 │   │       └── variables.scss  # Переменные стилей

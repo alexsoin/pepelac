@@ -31,41 +31,26 @@ read description
 addline
 echo -e "\n"
 
-# package.json ---
-PACKAGE_AUTHOR=$(git config --global user.email)
-
-message "Добавление автора проекта($PACKAGE_AUTHOR)" "package.json"; npx npe author "$PACKAGE_AUTHOR"
-message "Добавление названия проекта" "package.json"; npx npe name "$name" &>/dev/null
-message "Добавление описания проекта" "package.json"; npx npe description "$description" &>/dev/null
-message "Добавление версии проекта" "package.json"; npx npe version "1.0.0" &>/dev/null
-# --- package.json
-
 # README.md ---
 echo -e "# $name\n$description\n" > README.md
 echo -e "## Как запустить\n" >> README.md
 echo -e "**Установить зависимости**" >> README.md
-echo -e "- \`npm install\`" >> README.md
+echo -e "- \`npm i\`" >> README.md
 echo -e "\n**Режим живого сервера**" >> README.md
 echo -e "- \`npm run watch\`       - сборка и запуск live-server в режиме developer" >> README.md
-echo -e "- \`npm run prodwatch\`   - сборка и запуск live-server в режиме production" >> README.md
+echo -e "- \`npm run watch:prod\`  - сборка и запуск live-server в режиме production" >> README.md
 echo -e "\n**Режим сборки**" >> README.md
-echo -e "- \`npm run build\`       - сборка проекта в режиме production" >> README.md
-echo -e "- \`npm run devbuild\`    - сборка проекта в режиме developer" >> README.md
-echo -e "\nДокументация: https://github.com/alexsoin/gw-starter-kit" >> README.md
+echo -e "- \`npm run build\`       - сборка проекта в режиме developer" >> README.md
+echo -e "- \`npm run build:prod\`  - сборка проекта в режиме production" >> README.md
+echo -e "\nДокументация: https://github.com/alexsoin/pepelac" >> README.md
 
-message "Создан файл" "README.md" 
+message "Создан файл" "README.md"
 # --- README.md
 
 # rm & git init ---
-rm ./src/assets/img/gwst.png
-message "Удален файл" "./src/assets/img/gwst.png"
-
-rm ./static/favicon.ico
-message "Удален файл" "./static/favicon.ico"
-
+rm ./package-lock.json
+rm ./LICENSE
 rm -fr .git
-message "Удален каталог" ".git"
-
 git init
 message "Инициализирован" "git init"
 

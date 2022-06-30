@@ -1,5 +1,5 @@
 @import "fonts";
-@import "variables"; // Переопределение дефолтных значений переменных Bootstrap 5 и определение своих
-@import "bootstrap";
-@import "dark-mode";
+@import "variables";
+@import "helpers/bootstrap";
+@import "helpers/dark-mode";
 @import "base";

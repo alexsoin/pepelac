@@ -84,11 +84,8 @@ const commonConfig = (argv) => ({
 	resolve: {
 		roots: [
 			path.resolve(paths.dir.root, "src"),
-			path.resolve(paths.dir.root, "static"),
 		],
-		alias: {
-			images: path.resolve(paths.dir.root, "node_modules", "leaflet/dist/images/"), // leaflet
-		},
+		alias: {},
 	},
 	optimization: {
 		splitChunks: {

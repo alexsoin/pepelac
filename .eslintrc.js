@@ -15,7 +15,6 @@ module.exports = {
 		quotes: [2, "double", { avoidEscape: true }],
 		indent: ["error", "tab"],
 		camelcase: 0,
-		"import/extensions": ["error", "always"],
 		"import/no-extraneous-dependencies": 0,
 		"no-underscore-dangle": 0,
 		"no-plusplus": 0,

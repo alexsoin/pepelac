@@ -1,2 +1,2 @@
 import "bootstrap";
-import "./helpers/dark-mode.js";
+import "./helpers/dark-mode";
