@@ -1,5 +1,4 @@
-.dark-mode {
-	/* redefine theme colors for dark theme */
+:root[color-mode="dark"] {
 	$dark-primary: #1b0734;
 	$dark-secondary: #808080;
 	$dark-success: #222222;

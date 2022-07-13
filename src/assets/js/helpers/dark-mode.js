@@ -1,40 +1,21 @@
-const storageKey = "theme-is-dark";
-const darkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+const storageKeyTheme = "color-mode";
+const nameBtnToggleTheme = ".js--toggle-theme";
+const themeToggle = { dark: "light", light: "dark" };
 
-function toggleLocalTheme(isDark) {
-	window.localStorage.setItem(storageKey, isDark);
-}
-function switchTheme(isDark) {
-	document.body.classList.toggle("dark-mode", isDark);
-}
+const setTheme = (theme) => {
+	document.documentElement.setAttribute(storageKeyTheme, theme);
+	localStorage.setItem(storageKeyTheme, theme);
+};
 
-function themeIsDark() {
-	const localDarkTheme = window.localStorage.getItem(storageKey);
-	const isLocalDarkTheme = localDarkTheme === "true";
+const toggleColorMode = (setSystemTheme) => {
+	setTheme(setSystemTheme ? systemTheme : themeToggle[localStorage.getItem(storageKeyTheme)]);
+};
 
-	return localDarkTheme ? isLocalDarkTheme : darkScheme.matches;
-}
+document.addEventListener("DOMContentLoaded", () => {
+	const storageTheme = localStorage.getItem(storageKeyTheme) || false;
+	const toggleThemeButtons = document.querySelectorAll(nameBtnToggleTheme);
 
-function removeTheme() {
-	localStorage.removeItem(storageKey);
-	switchTheme(themeIsDark());
-}
-
-const isDark = themeIsDark();
-switchTheme(isDark);
-darkScheme.addEventListener("change", (e) => switchTheme(e.matches) && toggleLocalTheme(e.matches));
-
-document.querySelectorAll(".js--toggle-theme")
-	.forEach((btn) => btn.addEventListener("click", (e) => {
-		e.preventDefault();
-		const isDarkTheme = !themeIsDark();
-
-		toggleLocalTheme(isDarkTheme);
-		switchTheme(isDarkTheme);
-	}));
-
-document.querySelectorAll(".js--remove-now-theme")
-	.forEach((btn) => btn.addEventListener("click", (e) => {
-		e.preventDefault();
-		removeTheme();
-	}));
+	setTheme(storageTheme || systemTheme);
+	toggleThemeButtons.forEach((btn) => btn.addEventListener("click", () => toggleColorMode(btn.dataset.systemTheme)));
+});
