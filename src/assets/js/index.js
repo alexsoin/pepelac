@@ -1,6 +1,2 @@
 import "bootstrap";
-
-const aaa = "Rick";
-
-console.log(`hi, ${aaa}!`);
-console.log("Use VanillaJS: ", document.querySelector("h1"));
+import "./helpers/focus-visible";

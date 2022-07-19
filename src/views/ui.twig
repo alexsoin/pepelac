@@ -20,6 +20,25 @@
 			</div>
 		</div>
 	</div>
+	{# фикс для изображений в style="background-image(...)"
+	<div class="container mb-5 d-none">
+		<div class="row gy-4">
+			<div class="col-12">
+				<div class="h4 my-4" style="opacity: .5;">Всего картинок: {{ images|length }}</div>
+			</div>
+			{% for img in images %}
+				<div class="col-lg-4">
+					<div class="h-100 bg-secondary bg-opacity-25 p-3">
+						<code class="mb-3 pb-3 d-block text-nowrap overflow-auto">{{ img }}</code>
+						<div class="w-100 d-flex justify-content-center p-3 border border-light bg-light bg-opacity-25">
+							<img src="{{ img }}" class="img-fluid m-auto" alt="">
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+	#}
 	<script>
 		/** Скачивание файла */
 		function download(text, filename, type = "text/plain"){

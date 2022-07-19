@@ -1,0 +1,35 @@
+:root[color-mode="dark"] {
+	$dark-primary: #1b0734;
+	$dark-secondary: #808080;
+	$dark-success: #222;
+	$dark-dark: #2a2a2a;
+	$dark-light: #333;
+	$dark-info: #163960;
+	$dark-danger: #be3636;
+
+	$dark-body-color: #eee;
+	$dark-body-bg: #263c5c;
+
+	$theme-dark-colors: (
+		"primary": $dark-primary,
+		"secondary": $dark-secondary,
+		"success": $dark-success,
+		"danger": $dark-danger,
+		"info": $dark-info,
+		"dark": $dark-dark,
+		"light": $dark-light,
+	);
+
+	@each $color, $value in $theme-dark-colors {
+		--#{$variable-prefix}#{$color}: #{$value};
+	}
+
+	$theme-dark-colors-rgb: map-loop($theme-dark-colors, to-rgb, "$value");
+
+	@each $color, $value in $theme-dark-colors-rgb {
+		--#{$variable-prefix}#{$color}-rgb: #{$value};
+	}
+
+	--#{$variable-prefix}body-color: #{$dark-body-color};
+	--#{$variable-prefix}body-bg: #{$dark-body-bg};
+}
