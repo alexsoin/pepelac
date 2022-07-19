@@ -31,5 +31,4 @@ module.exports = {
 		"no-console": "off",
 		"no-tabs": 0,
 	},
-	ignorePatterns: ["gulpfile.babel.js", "dist/**/*", "node_modules/**/*"],
 };
