@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import paths from "../paths.config.js";
+import paths from "../paths.config";
 
 const readdirSync = (p, a = []) => {
 	if (fs.statSync(p).isDirectory()) fs.readdirSync(p).map((f) => readdirSync(a[a.push(path.join(p, f)) - 1], a));

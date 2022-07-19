@@ -4,8 +4,8 @@ import rsync from "gulp-rsync";
 import confirm from "gulp-confirm";
 import yargs from "yargs";
 
-import deployConfig from "../deploy.config.js";
-import paths from "../paths.config.js";
+import deployConfig from "../deploy.config";
+import paths from "../paths.config";
 
 const { argv } = yargs;
 

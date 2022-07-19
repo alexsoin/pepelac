@@ -5,13 +5,13 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import WebpackBar from "webpackbar";
 import { merge } from "webpack-merge";
-import paths from "./paths.config.js";
-import devConfig from "./webpack.dev.babel.js";
-import prodConfig from "./webpack.prod.babel.js";
-import dataDev from "../data/dev.js";
-import dataProd from "../data/prod.js";
-import dataSite from "../data/site.js";
-import images from "./helps/all-image.js";
+import paths from "./paths.config";
+import devConfig from "./webpack.dev.babel";
+import prodConfig from "./webpack.prod.babel";
+import dataDev from "../data/dev";
+import dataProd from "../data/prod";
+import dataSite from "../data/site";
+import images from "./helps/all-image";
 
 const dataMode = { production: dataProd, development: dataDev };
 const listHtml = paths.list.html.filtered

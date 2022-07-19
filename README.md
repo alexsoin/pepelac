@@ -2,7 +2,6 @@
 ![template engine - twig](https://img.shields.io/static/v1?label=template&message=twig&color=%2300A95C&style=for-the-badge)
 ![node.js](https://img.shields.io/static/v1?label=&message=node&color=%23339933&style=for-the-badge&logo=node.js&logoColor=%23333)
 ![webpack](https://img.shields.io/static/v1?label=&message=webpack&color=%238DD6F9&style=for-the-badge&logo=webpack&logoColor=%23333)
-![gulp](https://img.shields.io/static/v1?label=&message=gulp&color=%23CF4647&style=for-the-badge&logo=gulp&logoColor=%23333)
 ![babel](https://img.shields.io/static/v1?label=&message=babel&color=%23F9DC3E&style=for-the-badge&logo=babel&logoColor=%23333)
 ![bootstrap](https://img.shields.io/static/v1?label=&message=bootstrap&color=%237952B3&style=for-the-badge&logo=bootstrap&logoColor=%23333)
 ![sass](https://img.shields.io/static/v1?label=&message=sass&color=%23CC6699&style=for-the-badge&logo=sass&logoColor=%23333)
@@ -10,7 +9,7 @@
 
 # PEPELAC - frontend boilerplate
 
-Современный инструментарий для веб-разработки с использованием Gulp Task Runner и Webpack bundler.
+Современный инструментарий для веб-разработки с использованием Webpack.
 
 ![logo](https://user-images.githubusercontent.com/3787132/176785257-2fa84f95-acc2-4ecb-a5af-df0efaf571d3.svg)
 
@@ -26,7 +25,7 @@
 Скачайте файлы с github или клонируйте его c помощью команды:
 
 ```bash
-git clone https://github.com/alexsoin/gw-starter-kit.git
+git clone https://github.com/alexsoin/pepelac.git
 ```
 
 Инициализация проекта(Работает только в UNIX системах)
@@ -40,7 +39,7 @@ git clone https://github.com/alexsoin/gw-starter-kit.git
 Для установки зависимостей проекта необходимо в командной строке ввести команды:
 
 ```bash
-npm install
+npm i
 ```
 
 Если требуются дополнительные пакеты, то для их установки нужно выполнить команду:
@@ -48,43 +47,31 @@ npm install
 - Установка пакета, при этом информация о нём, автоматически прописывается в секцию "devDependencies" файла "package.json" _(такие пакеты как gulp-autoprefixer)_
 
 ```bash
-npm install --save-dev название_пакета
+npm i -D название_пакета
 ```
 
 - Установка пакета, при этом информация о нём, автоматически прописывается в секцию "dependencies" файла "package.json" _(такие пакеты как bootstrap)_
 
 ```bash
-npm install --save-prod название_пакета
+npm i название_пакета
 ```
 
 ### 3. Правка информации о новом проекте
 
 1. Переходим в клонированную директорию
 2. Удаляем папку `.git`
-3. Редактируем файл `package.json`, меняем в нем параметры `name`, `description`, `author` и `repository.url` на свои значения.
 
 ## Как использовать окружение
 
 ### Режим живого сервера
 
 - `npm run watch` - сборка и запуск live-server в режиме developer
-- `npm run prodwatch` - сборка и запуск live-server в режиме production
+- `npm run watch:prod` - сборка и запуск live-server в режиме production
 
 ### Режим сборки
 
-- `npm run build` - сборка проекта в режиме production
-- `npm run devbuild` - сборка проекта в режиме developer
-
-### Список gulp задач:
-
-- `gulp clean` - Очистка папки dist
-- `gulp templates` - Создание html страниц
-- `gulp styles` - Сборка файлов стилей css
-- `gulp scripts` - Сборка javascript файлов
-- `gulp fonts` - Перемещение шрифтов
-- `gulp images` - Обработка картинок
-- `gulp moveStatic` - Перемещение статических файлов
-- `gulp createDeploy` - Создание файла **deploy.json** для настройки деплоя
+- `npm run build` - сборка проекта в режиме developer
+- `npm run build:prod` - сборка проекта в режиме production
 
 ### Деплой собранных файлов на сервер
 
@@ -99,7 +86,6 @@ npm install --save-prod название_пакета
 - **node.js** (среды, в которой будет выполняться окружение);
 - **npm** (пакетного менеджера, входящего в Node.js; будет использоваться для загрузки Gulp, плагинов и фронтенд пакетов);
 - **popover, bootstrap** (пакеты, которые будут использоваться для сборки css и js частей сайта);
-- **gulp и его плагины** (будут использоваться для сборки проекта и выполнения других веб задач).
 - **webpack и его плагины** (будут использоваться для сборки js скриптов).
 
 ## Файловая структура Gulp проекта
@@ -158,7 +144,7 @@ npm install --save-prod название_пакета
 - `base.scss` - используется для написания своих стилей
 - `variables.scss` - содержит SCSS переменные, с помощью которых будем изменять стили bootstrap, а также использовать его для создания своих переменных
 - `fonts.scss` - подключаются шрифты, используемые на сайте
-- `_bootstrap.scss` - подключаются boostrap зависимости
+- `helpers/bootstrap.scss` - подключаются boostrap зависимости
 
 ### Директория src/views/
 
