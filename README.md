@@ -8,10 +8,13 @@
 ![javascript](https://img.shields.io/static/v1?label=&message=js&color=%23F7DF1E&style=for-the-badge&logo=javascript&logoColor=%23333)
 
 # PEPELAC - frontend boilerplate
+*В прошлом gw-starter-kit*
 
 Современный инструментарий для веб-разработки с использованием Webpack.
 
 ![logo](https://user-images.githubusercontent.com/3787132/176785257-2fa84f95-acc2-4ecb-a5af-df0efaf571d3.svg)
+
+PEPELAC - стартовый проект для вёрстки сайтов, а также создания статичных сайтов.
 
 ## Требования к окружению
 
