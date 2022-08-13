@@ -1,14 +1,13 @@
-// Functions
+// Configuration
 @import "bootstrap/scss/functions";
 
 // Variables
 @import "bootstrap/scss/variables";
-
-// Mixins
+@import "bootstrap/scss/maps";
 @import "bootstrap/scss/mixins";
 @import "bootstrap/scss/utilities";
 
-// Root + Reboot
+// Layout & components
 @import "bootstrap/scss/root";
 @import "bootstrap/scss/reboot";
 
@@ -42,7 +41,11 @@
 @import "bootstrap/scss/popover";
 @import "bootstrap/scss/carousel";
 @import "bootstrap/scss/spinners";
+@import "bootstrap/scss/offcanvas";
+@import "bootstrap/scss/placeholders";
 
-// Helpers & Mixins for Breakpoints + Print
+// Helpers
 @import "bootstrap/scss/helpers";
+
+// Utilities
 @import "bootstrap/scss/utilities/api";
