@@ -1,0 +1,11 @@
+@use "sass:math";
+
+// Удаление единицы измерения (16px -> 16)
+@function strip-unit($v) {
+	@return math.div($v, $v * 0 + 1);
+}
+
+// px -> rem
+@function rem($v) {
+	@return #{strip-unit(math.div($v, $base-size-px))} + rem;
+}
