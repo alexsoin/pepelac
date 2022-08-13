@@ -1,0 +1,30 @@
+// Размер шрифта
+@each $size in $font-sizes {
+
+	@each $breakpoint, $breakpoint-value in $grid-breakpoints {
+		@if $breakpoint == xs {
+			@include media-breakpoint-down(sm) {
+				.fs-#{$breakpoint}-#{strip-unit($size)} {
+					font-size: rem($size) !important;
+				}
+			}
+		} @else {
+			@include media-breakpoint-up($breakpoint) {
+				.fs-#{$breakpoint}-#{strip-unit($size)} {
+					font-size: rem($size) !important;
+				}
+			}
+		}
+	}
+
+	.fs-#{strip-unit($size)} {
+		font-size: rem($size) !important;
+	}
+}
+
+// Толщина шрифта
+@each $v in 100, 200, 300, 400, 500, 600, 700, 800, 900 {
+	.fw-#{$v} {
+		font-weight: $v !important;
+	}
+}
