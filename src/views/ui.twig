@@ -1,44 +1,27 @@
-{% extends "layout/base.twig" %}
+{% extends "templates/layouts/base.twig" %}
 
 {% set title = "Список ссылок на страницы" %}
+{% set showEMenu = false %}
+{% set isAuthorized = false %}
 
 {% block content %}
 	<div class="container mb-5">
 		<div class="row">
 			<div class="col-12">
-				<div class="h4 my-4" style="opacity: .5;">Всего страниц: {{ listHtml|length }}</div>
+				<div class="h4 my-4 opacity-50">Всего страниц: {{ listHtml()|length }}</div>
 			</div>
 			<div class="col-12">
 				<div class="list-group">
-				{% for html in listHtml %}
-					<a class="list-group-item list-group-item-action d-lg-flex justify-content-between align-items-center js-link-group" href="{{ html.url }}" target="_blank"><div>{{ html.title }}</div><code class="d-inline-block badge text-danger bg-light">{{ html.url }}</code></a>
+				{% for html in listHtml() %}
+					<a class="list-group-item list-group-item-action d-lg-flex justify-content-between align-items-center js-link-group" href="/{{ html.file }}" target="_blank"><div>{{ html.title }}</div><code class="d-inline-block badge text-secondary bg-light">{{ html.file }}</code></a>
 				{% endfor %}
 				</div>
 			</div>
-			<div class="col-12 mt-5">
+			<div class="col-12 mt-5 text-center">
 				<div><button id="download-list" class="btn btn-outline-success">Скачать список страниц</button></div>
 			</div>
 		</div>
 	</div>
-	{# фикс для изображений в style="background-image(...)"
-	<div class="container mb-5 d-none">
-		<div class="row gy-4">
-			<div class="col-12">
-				<div class="h4 my-4" style="opacity: .5;">Всего картинок: {{ images|length }}</div>
-			</div>
-			{% for img in images %}
-				<div class="col-lg-4">
-					<div class="h-100 bg-secondary bg-opacity-25 p-3">
-						<code class="mb-3 pb-3 d-block text-nowrap overflow-auto">{{ img }}</code>
-						<div class="w-100 d-flex justify-content-center p-3 border border-light bg-light bg-opacity-25">
-							<img src="{{ img }}" class="img-fluid m-auto" alt="">
-						</div>
-					</div>
-				</div>
-			{% endfor %}
-		</div>
-	</div>
-	#}
 	<script>
 		/** Скачивание файла */
 		function download(text, filename, type = "text/plain"){
@@ -49,14 +32,10 @@
 			a.download = filename;
 			a.click();
 		}
-
-		const listHtml = {{ listHtml|json_encode() }};
-		const contentLinks = listHtml.map(i => `${i.title} - ${i.url}`).join('\n');
-
-
+		const listHtml = {{ listHtml()|json_encode() }};
+		const contentLinks = listHtml.map(i => `${i.title} - /${i.file}`).join('\n');
 		/** Пометка ссылок на которые был переход */
 		document.querySelectorAll('.js-link-group').forEach(link => link.addEventListener('click', function() { this.classList.add('active') }))
-
 		/** Событие скачивание списка страниц */
 		document.getElementById('download-list').addEventListener('click', function() {
 			download(contentLinks, 'Список страниц сайта.txt')

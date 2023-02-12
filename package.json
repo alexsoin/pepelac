@@ -1,94 +1,23 @@
 {
 	"name": "pepelac",
 	"version": "1.0.0",
-	"description": "",
+	"type": "module",
+	"private": true,
 	"scripts": {
-		"watch": "webpack serve --mode development --config src/configs/webpack.config.babel.js",
-		"build": "webpack --mode development --config src/configs/webpack.config.babel.js",
-		"watch:prod": "webpack serve --mode production --config src/configs/webpack.config.babel.js",
-		"build:prod": "webpack --mode production --config src/configs/webpack.config.babel.js",
-		"build:prod-local": "webpack --mode production --config src/configs/webpack.config.babel.js --env path-build='/local/'",
-		"deploy": "gulp deploy",
-		"deploy:create": "gulp deploy:create",
-		"deploy:dev": "gulp deploy -m=dev",
-		"deploy:prod": "gulp deploy -m=prod",
-		"lint": "npm run lint:js && npm run lint:scss",
-		"lint:js": "eslint src/assets/js/**/*.js --fix",
-		"lint:scss": "stylelint src/assets/scss/**/*.{sass,scss} --fix"
+		"dev": "vite dev",
+		"build": "vituum build"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.18.10",
-		"@babel/plugin-transform-runtime": "^7.18.10",
-		"@babel/preset-env": "^7.18.10",
-		"@babel/register": "^7.18.9",
-		"@babel/runtime": "^7.18.9",
-		"@squoosh/lib": "^0.4.0",
-		"@sumotto/beautify-html-webpack-plugin": "^1.0.0",
-		"autoprefixer": "10.4.8",
-		"babel-core": "^6.26.3",
-		"babel-loader": "^8.2.5",
-		"copy-webpack-plugin": "^11.0.0",
-		"css-loader": "^6.7.1",
-		"css-minimizer-webpack-plugin": "^4.0.0",
-		"cssnano": "^5.1.13",
-		"eslint": "^8.21.0",
-		"eslint-config-airbnb-base": "^15.0.0",
-		"eslint-plugin-import": "^2.26.0",
-		"gulp": "^4.0.2",
-		"gulp-confirm": "^1.0.8",
-		"gulp-rsync": "^0.0.9",
-		"html-loader": "^4.1.0",
-		"html-webpack-plugin": "^5.5.0",
-		"image-minimizer-webpack-plugin": "^3.3.0",
-		"imagemin": "^8.0.1",
-		"imagemin-gifsicle": "^7.0.0",
-		"imagemin-mozjpeg": "^10.0.0",
-		"imagemin-pngquant": "^9.0.2",
-		"imagemin-svgo": "^10.0.1",
-		"mini-css-extract-plugin": "^2.6.1",
-		"postcss": "^8.4.16",
-		"postcss-loader": "^7.0.1",
-		"postcss-scss": "^4.0.4",
-		"postcss-sorting": "^7.0.1",
-		"raw-loader": "^4.0.2",
-		"sass": "^1.54.4",
-		"sass-loader": "^13.0.2",
-		"style-loader": "^3.3.1",
-		"stylelint": "^14.10.0",
-		"stylelint-config-standard-scss": "^5.0.0",
-		"stylelint-order": "^5.0.0",
-		"stylelint-scss": "^4.3.0",
-		"terser-webpack-plugin": "^5.3.4",
-		"twig-html-loader": "^0.1.9",
-		"webpack": "^5.74.0",
-		"webpack-cli": "^4.10.0",
-		"webpack-dev-server": "^4.10.0",
-		"webpack-merge": "^5.8.0",
-		"webpackbar": "^5.0.2",
-		"yargs": "^17.5.1"
+		"@types/bootstrap": "^5.2.6",
+		"@vituum/twig": "^0.1.1",
+		"eslint": "^8.33.0",
+		"sass": "^1.57.1",
+		"vituum": "^0.0.39"
 	},
 	"dependencies": {
+		"@fancyapps/ui": "^4.0.31",
 		"@popperjs/core": "^2.11.6",
-		"bootstrap": "^5.2.0"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "MIT",
-	"engines": {
-		"node": ">=16"
-	},
-	"browserslist": [
-		"last 2 version",
-		"not dead"
-	],
-	"babel": {
-		"presets": [
-			"@babel/preset-env"
-		],
-		"plugins": [
-			[
-				"@babel/transform-runtime"
-			]
-		]
+		"bootstrap": "^5.2.3",
+		"swiper": "^9.0.3"
 	}
 }
