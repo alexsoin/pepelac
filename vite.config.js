@@ -44,6 +44,9 @@ const fileNames = (assetInfo) => {
 export default defineConfig({
 	output: path.resolve(process.cwd(), "dist"),
 	integrations: [twig(twigOptions)],
+	imports: {
+		filenamePattern: {'+.css': 'src/assets/styles', '+.js': 'src/assets/scripts'}
+	},
 	templates: {
 		format: "twig",
 	},
