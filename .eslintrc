@@ -1,0 +1,42 @@
+{
+	"root": true,
+	"env": {
+		"browser": true,
+		"es2021": true,
+		"node": true
+	},
+	"extends": [
+		"eslint:recommended"
+	],
+	"parserOptions": {
+		"ecmaVersion": "latest",
+		"parser": {
+			"ts": "@typescript-eslint/parser",
+			"<template>": "espree"
+		},
+		"sourceType": "module"
+	},
+	"ignorePatterns": ["dist/**/*", "node_modules/**/*"],
+	"rules": {
+		"quotes": ["error", "double", { "avoidEscape": true }],
+		"indent": ["error", "tab"],
+		"camelcase": 0,
+		"class-methods-use-this": 0,
+		"consistent-return": 0,
+		"func-names": ["error", "never"],
+		"import/no-extraneous-dependencies": 0,
+		"max-len": ["error", { "code": 900 }],
+		"no-alert": "off",
+		"no-console": "off",
+		"no-continue": 0,
+		"no-multi-assign": ["error", { "ignoreNonDeclaration": true }],
+		"no-new": 0,
+		"no-param-reassign": ["error", { "props": false }],
+		"no-plusplus": 0,
+		"no-return-assign": 0,
+		"no-tabs": 0,
+		"no-underscore-dangle": 0,
+		"no-unused-vars": 0,
+		"prefer-destructuring": ["error", { "object": true, "array": false }]
+	}
+}

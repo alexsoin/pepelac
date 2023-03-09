@@ -18,4 +18,4 @@ export default () => {
 	// Удалите класс, когда пользователь взаимодействует со страницей с помощью мыши или когда страница теряет фокус.
 	document.addEventListener("click", removeFocusedClass);
 	document.addEventListener("focusout", removeFocusedClass);
-}
+};

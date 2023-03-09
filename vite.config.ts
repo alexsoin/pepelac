@@ -15,7 +15,7 @@ const listHtml = filtered.map((i) => {
 	const file = i.replace(".vituum.twig", "").replace(".twig", ".html");
 
 	return { title, file };
-}).filter(i => i.file.endsWith('.html'));
+}).filter((i) => i.file.endsWith(".html"));
 
 const twigOptions = {
 	globals: {
@@ -45,7 +45,7 @@ export default defineConfig({
 	output: path.resolve(process.cwd(), "dist"),
 	integrations: [twig(twigOptions)],
 	imports: {
-		filenamePattern: {'+.css': 'src/assets/styles', '+.js': 'src/assets/scripts'}
+		filenamePattern: { "+.css": "src/assets/styles", "+.js": "src/assets/scripts" },
 	},
 	templates: {
 		format: "twig",
@@ -54,22 +54,27 @@ export default defineConfig({
 	build: {
 		manifest: false,
 	},
+	resolve: {
+		alias: {
+			"@": path.resolve(process.cwd(), "src"),
+		},
+	},
 	vite: {
 		publicDir: path.resolve(process.cwd(), "public"),
 		resolve: {
 			alias: {
 				"@": path.resolve(process.cwd(), "src"),
-			}
+			},
 		},
 		build: {
 			manifest: false,
 			output: {
-				manualChunks: {}
+				manualChunks: {},
 			},
 			rollupOptions: {
 				output: {
-					entryFileNames: `assets/js/[name].js`,
-					chunkFileNames: `assets/js/[name].js`,
+					entryFileNames: "assets/js/[name].js",
+					chunkFileNames: "assets/js/[name].js",
 					assetFileNames: fileNames,
 				},
 			},
