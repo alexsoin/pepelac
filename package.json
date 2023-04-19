@@ -60,7 +60,7 @@
 		"stylelint-scss": "^4.3.0",
 		"terser-webpack-plugin": "^5.3.4",
 		"twig-html-loader": "^0.1.9",
-		"webpack": "^5.74.0",
+		"webpack": "^5.76.0",
 		"webpack-cli": "^4.10.0",
 		"webpack-dev-server": "^4.10.0",
 		"webpack-merge": "^5.8.0",
