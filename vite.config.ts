@@ -68,6 +68,7 @@ export default defineConfig({
 		},
 		build: {
 			manifest: false,
+			assetsInlineLimit: 0,
 			output: {
 				manualChunks: {},
 			},
