@@ -3,6 +3,7 @@
 		"esbenp.prettier-vscode",
 		"EditorConfig.EditorConfig",
 		"dbaeumer.vscode-eslint",
-		"whatwedo.twig"
+		"whatwedo.twig",
+		"stylelint.vscode-stylelint"
 	]
 }
