@@ -1,6 +1,5 @@
 // Размер шрифта
 @each $size in $font-sizes {
-
 	@each $breakpoint, $breakpoint-value in $grid-breakpoints {
 		@if $breakpoint == xs {
 			@include media-breakpoint-down(sm) {

@@ -34,14 +34,10 @@ echo -e "\n"
 # README.md ---
 echo -e "# $name\n$description\n" > README.md
 echo -e "## Как запустить\n" >> README.md
-echo -e "**Установить зависимости**" >> README.md
-echo -e "- \`npm i\`" >> README.md
-echo -e "\n**Режим живого сервера**" >> README.md
-echo -e "- \`npm run watch\`       - сборка и запуск live-server в режиме developer" >> README.md
-echo -e "- \`npm run watch:prod\`  - сборка и запуск live-server в режиме production" >> README.md
-echo -e "\n**Режим сборки**" >> README.md
-echo -e "- \`npm run build\`       - сборка проекта в режиме developer" >> README.md
-echo -e "- \`npm run build:prod\`  - сборка проекта в режиме production" >> README.md
+echo -e "- \`npm i\`          - установка зависимостей" >> README.md
+echo -e "- \`npm run dev\`    - запуск live-server" >> README.md
+echo -e "- \`npm run build\`  - сборка проекта" >> README.md
+echo -e "\n---\n" >> README.md
 echo -e "\nДокументация: https://github.com/alexsoin/pepelac" >> README.md
 
 message "Создан файл" "README.md"

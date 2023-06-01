@@ -1,4 +1,12 @@
 {
-	"scss.validate": false,
-	"stylelint.validate": ["scss"],
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true
+	},
+	"eslint.validate": [
+		"javascript",
+		"typescript"
+	],
+	"eslint.options": {
+		"ignorePath": ".gitignore"
+	}
 }

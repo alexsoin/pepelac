@@ -1,0 +1,35 @@
+{
+	"extends": [
+		"stylelint-config-standard",
+		"stylelint-config-clean-order",
+		"stylelint-config-standard-scss",
+		"stylelint-config-rational-order"
+	],
+	"plugins": [
+		"stylelint-scss"
+	],
+	"ignoreFiles": [
+		"**/*.min.css"
+	],
+	"rules": {
+		"indentation": "tab",
+		"font-family-name-quotes": "always-unless-keyword",
+		"at-rule-no-unknown": null,
+		"scss/at-rule-no-unknown": true,
+		"scss/no-global-function-names": null,
+		"scss/double-slash-comment-whitespace-inside": null,
+		"selector-class-pattern": null,
+		"selector-id-pattern": null,
+		"declaration-empty-line-before": "never",
+		"no-descending-specificity": null,
+		"property-no-vendor-prefix": null,
+		"declaration-block-no-redundant-longhand-properties": [
+			true,
+			{
+				"ignoreShorthands": [
+					"inset"
+				]
+			}
+		]
+	}
+}

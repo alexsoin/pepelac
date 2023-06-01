@@ -3,3 +3,6 @@
 /.idea
 /dist
 deploy.json
++.js
++.css
++.scss
