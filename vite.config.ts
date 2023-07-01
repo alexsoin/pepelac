@@ -1,5 +1,6 @@
-import {defineConfig} from "vituum";
-import twig from "@vituum/twig";
+import { defineConfig } from "vite";
+import vituum from "vituum";
+import twig from "@vituum/vite-plugin-twig";
 import path from "path";
 import fs from "fs";
 import dataSite from "./src/data/site";
@@ -14,15 +15,6 @@ const listHtml = filtered.map((i) => {
 
 	return {title, file};
 }).filter((i) => i.file.endsWith(".html"));
-
-const twigOptions = {
-	globals: {
-		site: dataSite,
-	},
-	functions: {
-		listHtml: () => listHtml,
-	},
-};
 
 const fileNames = (assetInfo) => {
 	const fileName = assetInfo.name;
@@ -39,42 +31,35 @@ const fileNames = (assetInfo) => {
 };
 
 export default defineConfig({
-	output: path.resolve(process.cwd(), "dist"),
-	integrations: [twig(twigOptions)],
-	imports: {
-		filenamePattern: {"+.css": "src/assets/styles", "+.js": "src/assets/scripts"},
-	},
-	templates: {
-		format: "twig",
-	},
-	publicDir: path.resolve(process.cwd(), "public"),
-	build: {
-		manifest: false,
-	},
+	plugins: [
+		vituum({
+			pages: {
+				dir: "./src/views"
+			}
+		}),
+		twig({
+			root: "./src",
+			globals: {
+				site: dataSite,
+			},
+			functions: {
+				listHtml: () => listHtml,
+			},
+		})
+	],
 	resolve: {
 		alias: {
 			"@": path.resolve(process.cwd(), "src"),
 		},
 	},
-	vite: {
-		publicDir: path.resolve(process.cwd(), "public"),
-		resolve: {
-			alias: {
-				"@": path.resolve(process.cwd(), "src"),
-			},
-		},
-		build: {
-			manifest: false,
-			assetsInlineLimit: 0,
+	build: {
+		manifest: false,
+		assetsInlineLimit: 0,
+		rollupOptions: {
 			output: {
-				manualChunks: {},
-			},
-			rollupOptions: {
-				output: {
-					entryFileNames: "assets/js/[name].js",
-					chunkFileNames: "assets/js/[name].js",
-					assetFileNames: fileNames,
-				},
+				entryFileNames: "assets/js/[name].js",
+				chunkFileNames: "assets/js/[name].js",
+				assetFileNames: fileNames,
 			},
 		},
 	},
