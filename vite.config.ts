@@ -35,6 +35,9 @@ export default defineConfig({
 		vituum({
 			pages: {
 				dir: "./src/views"
+			},
+			imports: {
+				paths: []
 			}
 		}),
 		twig({
@@ -56,6 +59,10 @@ export default defineConfig({
 		manifest: false,
 		assetsInlineLimit: 0,
 		rollupOptions: {
+			input: [
+				"./src/views/**/*.{twig,html}",
+				"!./src/views/**/*.json"
+			],
 			output: {
 				entryFileNames: "assets/js/[name].js",
 				chunkFileNames: "assets/js/[name].js",
