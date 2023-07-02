@@ -1,34 +1,9 @@
 import { defineConfig } from "vite";
 import vituum from "vituum";
 import twig from "@vituum/vite-plugin-twig";
-import path from "path";
-import fs from "fs";
+import path from "node:path";
 import dataSite from "./src/data/site";
-
-const filesTwig = fs.readdirSync(path.join(process.cwd(), "src", "views")).filter((i) => i.includes(".twig"));
-const filtered = filesTwig.filter((i) => !i.includes("ui.twig"));
-const listHtml = filtered.map((i) => {
-	const htmlContent = fs.readFileSync(path.join(process.cwd(), "src", "views", i), "utf8");
-	const regexResultTitle = htmlContent.match(/{% set title = "([^"]+)" %}/);
-	const title = regexResultTitle !== null && regexResultTitle.length > 1 ? regexResultTitle[1] : "";
-	const file = i.replace(".vituum.twig", "").replace(".twig", ".html");
-
-	return {title, file};
-}).filter((i) => i.file.endsWith(".html"));
-
-const fileNames = (assetInfo) => {
-	const fileName = assetInfo.name;
-	let extType = assetInfo.name.split(".").pop();
-	if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
-		extType = "img/site";
-	}
-
-	if (/ttf|eot|woff2?/i.test(extType)) {
-		extType = "fonts";
-	}
-
-	return `assets/${extType}/${fileName}`;
-};
+import { listHtml, getFileName } from "./src/data/app.config";
 
 export default defineConfig({
 	plugins: [
@@ -60,13 +35,15 @@ export default defineConfig({
 		assetsInlineLimit: 0,
 		rollupOptions: {
 			input: [
-				"./src/views/**/*.{twig,html}",
-				"!./src/views/**/*.json"
+				"./src/views/**/*.{json,twig,html}",
+				"!./src/views/**/*.twig.json",
+				"./src/styles/*.{css,pcss,scss,sass,less,styl,stylus}",
+				"./src/scripts/*.{js,ts,mjs}"
 			],
 			output: {
 				entryFileNames: "assets/js/[name].js",
 				chunkFileNames: "assets/js/[name].js",
-				assetFileNames: fileNames,
+				assetFileNames: getFileName,
 			},
 		},
 	},
