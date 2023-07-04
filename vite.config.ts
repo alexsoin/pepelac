@@ -33,11 +33,11 @@ export default defineConfig({
 	build: {
 		manifest: false,
 		assetsInlineLimit: 0,
+		modulePreload: false,
 		rollupOptions: {
 			input: [
 				"./src/views/**/*.{json,twig,html}",
 				"!./src/views/**/*.twig.json",
-				"./src/styles/*.{css,pcss,scss,sass,less,styl,stylus}",
 				"./src/scripts/*.{js,ts,mjs}"
 			],
 			output: {

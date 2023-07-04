@@ -16,7 +16,7 @@ function getFileName(assetInfo) {
 		extType = "fonts";
 	}
 
-	return `assets/${extType}/${assetInfo.name}`;
+	return `assets/${extType}/[name][extname]`;
 }
 
 const filesTwig = fs.readdirSync(path.join(process.cwd(), "src", "views"))
