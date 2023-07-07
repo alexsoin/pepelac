@@ -21,7 +21,7 @@
 		"@vituum/vite-plugin-twig": "^1.0.0",
 		"eslint": "^8.44.0",
 		"sass": "^1.63.6",
-		"stylelint": "^15.9.0",
+		"stylelint": "^15.10.1",
 		"stylelint-config-clean-order": "^5.0.1",
 		"stylelint-config-rational-order": "^0.1.2",
 		"stylelint-config-standard": "^33.0.0",
