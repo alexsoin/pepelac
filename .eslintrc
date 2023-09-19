@@ -8,14 +8,7 @@
 	"extends": [
 		"eslint:recommended"
 	],
-	"parserOptions": {
-		"ecmaVersion": "latest",
-		"parser": {
-			"ts": "@typescript-eslint/parser",
-			"<template>": "espree"
-		},
-		"sourceType": "module"
-	},
+	"parser": "@typescript-eslint/parser",
 	"ignorePatterns": ["dist/**/*", "node_modules/**/*"],
 	"rules": {
 		"object-curly-spacing": ["error", "always"],
