@@ -13,9 +13,11 @@
 		"noEmit": true,
 		"baseUrl": ".",
 		"paths": {
-			"@/*": ["./src/*"]
+			"@/*": ["./src/*"],
+			"scripts/*": ["./src/scripts/*"],
+			"styles/*": ["./src/styles/*"],
 		}
 	},
-	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.js"],
+	"include": ["src/**/*.ts"],
 	"references": [{ "path": "./tsconfig.node.json" }]
 }
