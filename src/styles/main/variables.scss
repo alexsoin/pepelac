@@ -3,7 +3,7 @@ $font-family-base: $font-default, -apple-system, BlinkMacSystemFont, "Segoe UI",
 
 // Helpers
 $base-size-px: 16px; // Базовый размер шрифта в px (helpers/_functions.scss)
-$font-sizes: (12px, 16px, 24px); // Размеры шрифтов (helpers/_font.scss)
+$font-sizes-px-rem: (12px, 16px, 24px); // Размеры шрифтов (helpers/_font.scss)
 
 // Bootstrap dark mode
 $enable-dark-mode: false; // при включении раскоментировать в src/styles/helpers/bootstrap.scss
@@ -28,6 +28,7 @@ $spacers: (
 $enable-rounded: true;
 $enable-shadows: false;
 $enable-gradients: false;
+$enable-negative-margins: false;
 
 // Bootstrap Colors
 $body-color: #000;

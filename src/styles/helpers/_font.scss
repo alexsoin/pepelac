@@ -1,13 +1,19 @@
 // Размер шрифта
-@each $size in $font-sizes {
+@each $size in $font-sizes-px-rem {
+
 	@each $breakpoint, $breakpoint-value in $grid-breakpoints {
+
 		@if $breakpoint == xs {
+
 			@include media-breakpoint-down(sm) {
 				.fs-#{$breakpoint}-#{strip-unit($size)} {
 					font-size: rem($size) !important;
 				}
 			}
-		} @else {
+		}
+
+		@else {
+
 			@include media-breakpoint-up($breakpoint) {
 				.fs-#{$breakpoint}-#{strip-unit($size)} {
 					font-size: rem($size) !important;

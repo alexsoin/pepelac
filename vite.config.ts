@@ -1,22 +1,22 @@
-import { defineConfig } from "vite";
-import vituum from "vituum";
-import twig from "@vituum/vite-plugin-twig";
-import path from "node:path";
-import dataSite from "./src/data/site";
-import { listHtml, getFileName } from "./src/data/app.config";
+import { defineConfig } from 'vite';
+import vituum from 'vituum';
+import twig from '@vituum/vite-plugin-twig';
+import path from 'node:path';
+import dataSite from './src/data/site';
+import { listHtml, getFileName } from './src/data/app.config';
 
 export default defineConfig({
 	plugins: [
 		vituum({
 			pages: {
-				dir: "./src/views"
+				dir: './src/views'
 			},
 			imports: {
 				paths: []
 			}
 		}),
 		twig({
-			root: "./src",
+			root: './src',
 			globals: {
 				site: dataSite,
 			},
@@ -27,7 +27,9 @@ export default defineConfig({
 	],
 	resolve: {
 		alias: {
-			"@": path.resolve(process.cwd(), "src"),
+			'@': path.resolve(process.cwd(), 'src'),
+			'scripts': path.resolve(process.cwd(), 'src', 'scripts'),
+			'styles': path.resolve(process.cwd(), 'src', 'styles'),
 		},
 	},
 	build: {
@@ -36,13 +38,13 @@ export default defineConfig({
 		modulePreload: false,
 		rollupOptions: {
 			input: [
-				"./src/views/**/*.{json,twig,html}",
-				"!./src/views/**/*.twig.json",
-				"./src/scripts/*.{js,ts,mjs}"
+				'./src/views/**/*.{json,twig,html}',
+				'!./src/views/**/*.twig.json',
+				'./src/scripts/*.{js,ts,mjs}'
 			],
 			output: {
-				entryFileNames: "assets/js/[name].js",
-				chunkFileNames: "assets/js/[name].js",
+				entryFileNames: 'assets/js/[name].js',
+				chunkFileNames: 'assets/js/[name].js',
 				assetFileNames: getFileName,
 			},
 		},
