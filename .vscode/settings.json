@@ -1,12 +1,30 @@
 {
+	"stylelint.validate": ["css", "scss"],
+	"eslint.validate": ["typescript", "javascript"],
+	"eslint.enable": true,
 	"editor.codeActionsOnSave": {
+		"source.fixAll.stylelint": true,
 		"source.fixAll.eslint": true
 	},
-	"eslint.validate": [
-		"javascript",
-		"typescript"
-	],
-	"eslint.options": {
-		"ignorePath": ".gitignore"
-	}
+	"[twig]": {
+		"editor.defaultFormatter": "mblode.twig-language-2",
+		"editor.formatOnSave": true
+	},
+
+	// подсказки типов ⬇️
+	"javascript.inlayHints.enumMemberValues.enabled": true,
+	"javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+	"javascript.inlayHints.parameterNames.enabled": "literals",
+	"javascript.inlayHints.parameterTypes.enabled": true,
+	"javascript.inlayHints.propertyDeclarationTypes.enabled": true,
+	"javascript.inlayHints.variableTypes.enabled": true,
+	"javascript.updateImportsOnFileMove.enabled": "always",
+
+	"typescript.inlayHints.enumMemberValues.enabled": true,
+	"typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+	"typescript.inlayHints.parameterNames.enabled": "literals",
+	"typescript.inlayHints.parameterTypes.enabled": true,
+	"typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+	"typescript.inlayHints.variableTypes.enabled": true,
+	"typescript.updateImportsOnFileMove.enabled": "always"
 }
