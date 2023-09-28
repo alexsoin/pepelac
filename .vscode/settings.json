@@ -7,8 +7,11 @@
 		"source.fixAll.eslint": true
 	},
 	"[twig]": {
-		"editor.defaultFormatter": "mblode.twig-language-2",
+		"editor.defaultFormatter": "junstyle.twig-language",
 		"editor.formatOnSave": true
+	},
+	"emmet.includeLanguages": {
+		"twig": "html"
 	},
 
 	// подсказки типов ⬇️
