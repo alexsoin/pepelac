@@ -4,6 +4,8 @@
 		"EditorConfig.EditorConfig",
 		"dbaeumer.vscode-eslint",
 		"mblode.twig-language-2",
-		"stylelint.vscode-stylelint"
+		"stylelint.vscode-stylelint",
+		"junstyle.twig-language",
+		// "mblode.twig-language-2",
 	]
 }

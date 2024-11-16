@@ -3,11 +3,11 @@
 	"eslint.validate": ["typescript", "javascript"],
 	"eslint.enable": true,
 	"editor.codeActionsOnSave": {
-		"source.fixAll.stylelint": true,
-		"source.fixAll.eslint": true
+		"source.fixAll.stylelint": "explicit",
+		"source.fixAll.eslint": "explicit"
 	},
 	"[twig]": {
-		"editor.defaultFormatter": "junstyle.twig-language",
+		"editor.defaultFormatter": "junstyle.twig-language", // mblode.twig-language-2
 		"editor.formatOnSave": true
 	},
 	"emmet.includeLanguages": {

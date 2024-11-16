@@ -1,35 +1,57 @@
-import fs from "node:fs";
-import path from "node:path";
-
-function getFileTitle(htmlContent) {
-	const regexResultTitle = htmlContent.match(/{% set title = ["']([^"]+)["'] %}/);
-	return regexResultTitle && regexResultTitle[1] ? regexResultTitle[1] : "";
-}
+import fs from 'node:fs';
+import path from 'node:path';
 
 function getFileName(assetInfo) {
-	let extType = assetInfo.name.split(".").pop();
+	let extType = assetInfo.name.split('.').pop();
 	if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
-		extType = "img/site";
+		extType = 'img/site';
 	}
 
 	if (/ttf|eot|woff2?/i.test(extType)) {
-		extType = "fonts";
+		extType = 'fonts';
 	}
 
 	return `assets/${extType}/[name][extname]`;
 }
 
-const filesTwig = fs.readdirSync(path.join(process.cwd(), "src", "views"))
-	.filter((fileName) => fileName.includes(".twig") && !fileName.includes("ui.twig"));
+function getFilesWithExtension(dir, extension) {
+	let results = [];
+	const files = fs.readdirSync(dir);
 
-const listHtml = filesTwig
-	.map((fileName) => {
-		const filePath = path.join(process.cwd(), "src", "views", fileName);
-		const htmlContent = fs.readFileSync(filePath, "utf8");
-		const title = getFileTitle(htmlContent);
-		const file = fileName.replace(".vituum.twig", "").replace(".twig", ".html");
-		return { title, file };
-	})
-	.filter((item) => item.file.endsWith(".html"));
+	for (const file of files) {
+		const filePath = path.join(dir, file);
+		const stat = fs.statSync(filePath);
+
+		if (stat.isDirectory()) {
+			results = results.concat(getFilesWithExtension(filePath, extension));
+		} else if (path.extname(file) === extension) {
+			results.push(filePath);
+		}
+	}
+
+	return results;
+}
+
+function extractTitleFromTwig(fileContent) {
+	const titleRegex = /\{% set title = ["'](.+?)["'] %\}/;
+	const match = fileContent.match(titleRegex);
+	return match ? match[1] : null;
+}
+
+function getTwigFilesWithTitles(directory) {
+	const twigFiles = getFilesWithExtension(directory, '.twig');
+	return twigFiles
+		.filter(file => path.basename(file) !== 'ui.twig')
+		.map(file => {
+			const content = fs.readFileSync(file, 'utf8');
+			const title = extractTitleFromTwig(content) || '';
+			return {
+				file: path.relative(directory, file).replace('.twig', '.html'),
+				title,
+			};
+		});
+}
+
+const listHtml = getTwigFilesWithTitles(path.join(process.cwd(), 'src', 'views'));
 
 export { listHtml, getFileName };

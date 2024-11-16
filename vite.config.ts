@@ -9,11 +9,11 @@ export default defineConfig({
 	plugins: [
 		vituum({
 			pages: {
-				dir: './src/views'
+				dir: './src/views',
 			},
 			imports: {
-				paths: []
-			}
+				paths: [],
+			},
 		}),
 		twig({
 			root: './src',
@@ -23,13 +23,13 @@ export default defineConfig({
 			functions: {
 				listHtml: () => listHtml,
 			},
-		})
+		}),
 	],
 	resolve: {
 		alias: {
 			'@': path.resolve(process.cwd(), 'src'),
-			'scripts': path.resolve(process.cwd(), 'src', 'scripts'),
-			'styles': path.resolve(process.cwd(), 'src', 'styles'),
+			scripts: path.resolve(process.cwd(), 'src', 'scripts'),
+			styles: path.resolve(process.cwd(), 'src', 'styles'),
 		},
 	},
 	build: {
@@ -37,11 +37,7 @@ export default defineConfig({
 		assetsInlineLimit: 0,
 		modulePreload: false,
 		rollupOptions: {
-			input: [
-				'./src/views/**/*.{json,twig,html}',
-				'!./src/views/**/*.twig.json',
-				'./src/scripts/*.{js,ts,mjs}'
-			],
+			input: ['./src/views/**/*.{json,twig,html}', '!./src/views/**/*.twig.json', './src/scripts/*.{js,ts,mjs}'],
 			output: {
 				entryFileNames: 'assets/js/[name].js',
 				chunkFileNames: 'assets/js/[name].js',

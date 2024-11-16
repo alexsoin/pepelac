@@ -23,22 +23,24 @@
 		</div>
 	</div>
 	<script>
-		/** Скачивание файла */
-		function download(text, filename, type = "text/plain"){
-			const blob = new Blob([text], {type});
-			const url = window.URL.createObjectURL(blob);
-			const a = document.createElement("a");
-			a.href = url;
-			a.download = filename;
-			a.click();
-		}
+		// Скачивание файла
+		const download = (text, filename, type = "text/plain") => {
+			const url = URL.createObjectURL(new Blob([text], { type }));
+			Object.assign(document.createElement("a"), { href: url, download: filename }).click();
+		};
+
+		// Генерация контента ссылок
 		const listHtml = {{ listHtml()|json_encode() }};
-		const contentLinks = listHtml.map(i => `${i.title} - /${i.file}`).join('\n');
-		/** Пометка ссылок на которые был переход */
-		document.querySelectorAll('.js-link-group').forEach(link => link.addEventListener('click', function() { this.classList.add('active') }))
-		/** Событие скачивание списка страниц */
-		document.getElementById('download-list').addEventListener('click', function() {
+		const contentLinks = listHtml.map(({ title, file }) => `${title} - /${file}`).join('\n');
+
+		// Обработка кликов на ссылки и добавление класса active
+		document.querySelectorAll('.js-link-group').forEach(link =>
+			link.addEventListener('click', () => link.classList.add('active'))
+		);
+
+		// Скачивание списка страниц
+		document.getElementById('download-list').addEventListener('click', () =>
 			download(contentLinks, 'Список страниц сайта.txt')
-		})
+		);
 	</script>
 {% endblock %}

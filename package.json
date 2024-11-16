@@ -14,30 +14,30 @@
 		"*.{css,scss}": "stylelint --fix"
 	},
 	"devDependencies": {
-		"@types/bootstrap": "^5.2.7",
-		"@types/node": "^20.6.2",
-		"@typescript-eslint/eslint-plugin": "^6.7.2",
-		"@typescript-eslint/parser": "^6.7.2",
-		"@vituum/vite-plugin-twig": "^1.0.0",
-		"eslint": "^8.49.0",
-		"eslint-config-prettier": "^9.0.0",
-		"eslint-plugin-prettier": "^5.0.0",
-		"prettier": "^3.0.3",
-		"prettier-eslint": "^15.0.1",
-		"sass": "^1.63.6",
-		"stylelint": "^15.9.0",
-		"stylelint-config-clean-order": "^5.0.1",
+		"@types/bootstrap": "^5.2.10",
+		"@types/node": "^22.9.0",
+		"@typescript-eslint/eslint-plugin": "^8.14.0",
+		"@typescript-eslint/parser": "^8.14.0",
+		"@vituum/vite-plugin-twig": "^1.1.0",
+		"eslint": "~8.57.1",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-prettier": "^5.2.1",
+		"prettier": "^3.3.3",
+		"prettier-eslint": "^16.3.0",
+		"sass": "~1.64.2",
+		"stylelint": "^16.10.0",
+		"stylelint-config-clean-order": "^6.1.0",
 		"stylelint-config-rational-order": "^0.1.2",
-		"stylelint-config-standard": "^33.0.0",
-		"stylelint-config-standard-scss": "^10.0.0",
-		"stylelint-config-twbs-bootstrap": "^11.0.1",
-		"stylelint-order": "^6.0.3",
-		"stylelint-scss": "^5.0.1",
-		"typescript": "^5.2.2",
-		"vituum": "^1.0.0"
+		"stylelint-config-standard": "^36.0.1",
+		"stylelint-config-standard-scss": "^13.1.0",
+		"stylelint-config-twbs-bootstrap": "^15.1.0",
+		"stylelint-order": "^6.0.4",
+		"stylelint-scss": "^6.9.0",
+		"typescript": "^5.6.3",
+		"vituum": "^1.1.1"
 	},
 	"dependencies": {
 		"@popperjs/core": "^2.11.8",
-		"bootstrap": "^5.3.2"
+		"bootstrap": "^5.3.3"
 	}
 }
